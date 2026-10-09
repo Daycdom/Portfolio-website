@@ -8,6 +8,7 @@ Dominic Caulfield-Duverger, Oct 9, 2026
 - `js/data.js` - all the content
 - `js/main.js` - builds the page from data.js
 - `css/styles.css` - styling
+- `CHANGELOG.md` - update log
 
 ## Notes
 
