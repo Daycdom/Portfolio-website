@@ -17,8 +17,8 @@ const PORTFOLIO = {
   profile: {
     name: "Dominic Caulfield-Duverger",
     title: "IT & Software Professional",
-    location: "Canton, GA",
-    email: "Daycdom@gmail.com",
+    // location: "City, ST",   // optional; shown in the hero when set
+    email: "dominic.cauduverger@gmail.com",
     // Short line shown under the name in the hero.
     tagline:
       "Configuring, networking, and troubleshooting systems at scale, and building software on the side.",

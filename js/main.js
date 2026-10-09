@@ -105,7 +105,7 @@
             <div class="job__when">${esc(job.start)} – ${esc(job.end)}</div>
             <div class="job__body">
               <h3 class="job__role">${esc(job.role)}</h3>
-              <p class="job__where">${esc(job.company)} · ${esc(job.location)}</p>
+              <p class="job__where">${esc(job.company)}${job.location ? ` · ${esc(job.location)}` : ""}</p>
               <ul class="bullets">${list(job.points, (pt) => `<li>${esc(pt)}</li>`)}</ul>
             </div>
           </li>`)}
@@ -175,7 +175,7 @@
     </button>`;
 
   document.getElementById("hero").innerHTML = `
-    <p class="hero__eyebrow">${esc(data.profile.title)} · ${esc(data.profile.location)}</p>
+    <p class="hero__eyebrow">${esc(data.profile.title)}${data.profile.location ? ` · ${esc(data.profile.location)}` : ""}</p>
     <h1 class="hero__name">${esc(data.profile.name)}</h1>
     <p class="hero__tagline">${esc(data.profile.tagline)}</p>`;
 
@@ -183,8 +183,7 @@
     section(s.id, s.label, RENDERERS[s.id](data), i));
 
   document.getElementById("footer").innerHTML = `
-    <p>© ${new Date().getFullYear()} ${esc(data.profile.name)}</p>
-    <p class="muted">Built with plain HTML, CSS & JavaScript</p>`;
+    <p>© ${new Date().getFullYear()} ${esc(data.profile.name)}</p>`;
 
   document.title = `${data.profile.name} · Portfolio`;
 
