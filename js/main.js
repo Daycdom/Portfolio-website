@@ -387,10 +387,15 @@
       return dropSection();
     }
 
-    // fill the project slots, swapping the plain link for a full card
+    // fill the project slots, swapping the plain link for a full card.
+    // GitHub only lists public repos, so one that isn't in the list is
+    // still private - say so instead of linking to a 404. Once it goes
+    // public the card shows up on its own.
     slots.forEach((slot) => {
       const r = repos.find((r) => r.name === slot.dataset.repo);
-      if (r) slot.innerHTML = repoCard(r, "card--nested");
+      slot.innerHTML = r
+        ? repoCard(r, "card--nested")
+        : `<p class="repo-private">Source code is private for now</p>`;
     });
 
     if (!grid) return;

@@ -457,6 +457,13 @@ a.toggle:hover span:first-child {
   transform: none;
 }
 
+/* shown in place of a repo card while the repo is private */
+.repo-private {
+  margin-top: 14px;
+  font: 400 13px var(--font-mono);
+  color: var(--muted);
+}
+
 /* + turns into x when open */
 .toggle__icon {
   transition: transform 0.2s;
