@@ -50,10 +50,10 @@ const PORTFOLIO = {
   // ---- Sections ----
   // Order here = order on the page and in the nav.
   // id has to match a renderer in main.js. Set enabled: false to hide one.
+  // collapsed: true starts the section closed (click the heading to open).
   sections: [
     { id: "about",      label: "About",      enabled: true },
     { id: "projects",   label: "Projects",   enabled: true },
-    { id: "repos",      label: "Public repos", enabled: true },
     { id: "experience", label: "Experience", enabled: true },
     { id: "skills",     label: "Skills",     enabled: true },
     { id: "education",  label: "Education",  enabled: true },
@@ -62,8 +62,9 @@ const PORTFOLIO = {
 
 
   // ---- GitHub ----
-  // The "Public repos" section pulls these live from GitHub's API,
-  // so a new public repo shows up on its own. Private ones never do.
+  // The "Public repos" panel at the bottom of Projects pulls these live
+  // from GitHub's API, so a new public repo shows up on its own.
+  // Private ones never do.
   github: {
     user: "Daycdom",
     hideForks: true,

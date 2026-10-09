@@ -44,13 +44,21 @@
 
   // Shared wrapper for every section so they all get the same
   // numbered heading (01 About, 02 Projects...).
-  const section = (id, label, inner, index) => `
+  // The heading is a button that opens/closes the section.
+  const section = ({ id, label, collapsed }, inner, index) => `
     <section id="${id}" class="section reveal" aria-labelledby="${id}-title">
-      <header class="section__head">
-        <span class="section__num">${String(index + 1).padStart(2, "0")}</span>
-        <h2 id="${id}-title" class="section__title">${esc(label)}</h2>
-      </header>
-      ${inner}
+      <h2 class="section__head">
+        <button class="section__toggle" id="${id}-title"
+                aria-expanded="${!collapsed}" aria-controls="${id}-body">
+          <span class="section__num">${String(index + 1).padStart(2, "0")}</span>
+          <span class="section__title">${esc(label)}</span>
+          <span class="section__icon" aria-hidden="true">+</span>
+        </button>
+      </h2>
+
+      <div class="section__body" id="${id}-body"${collapsed ? " hidden" : ""}>
+        ${inner}
+      </div>
     </section>`;
 
   // One GitHub repo as a card, same look as the project cards.
@@ -114,7 +122,7 @@
                     aria-pressed="${i === 0}">${esc(c)}</button>`)}
         </div>
 
-        <div class="cards">
+        <div class="cards" id="project-cards">
           ${list(projects, (p) => {
             // skip the Details button if there's nothing extra to show
             const hasMore = p.details.length || p.links.length || p.repo;
@@ -150,16 +158,23 @@
                 </button>` : ""}
             </article>`;
           })}
+        </div>
+
+        <!-- Public repos, closed by default. loadRepos() fills it in,
+             or removes it if GitHub has nothing to show -->
+        <div class="subsection" id="repo-drawer">
+          <h3 class="subsection__head">
+            <button class="toggle subsection__toggle" aria-expanded="false" aria-controls="repo-cards"
+                    data-closed="Public repos on GitHub" data-open="Public repos on GitHub">
+              <span>Public repos on GitHub</span><span class="toggle__icon" aria-hidden="true">+</span>
+            </button>
+          </h3>
+
+          <div class="cards" id="repo-cards" hidden>
+            <p class="card__desc">Loading repos from GitHub...</p>
+          </div>
         </div>`;
     },
-
-
-    // just an empty grid here, the cards get filled in by loadRepos()
-    // further down once GitHub answers
-    repos: () => `
-      <div class="cards" id="repo-cards" aria-live="polite">
-        <p class="card__desc">Loading repos from GitHub...</p>
-      </div>`,
 
 
     // timeline, then the "other experience" list if there is one
@@ -259,7 +274,7 @@
     ${socials(data.profile)}`;
 
   document.getElementById("content").innerHTML = list(sections, (s, i) =>
-    section(s.id, s.label, RENDERERS[s.id](data), i));
+    section(s, RENDERERS[s.id](data), i));
 
   // year updates on its own
   document.getElementById("footer").innerHTML = `
@@ -305,14 +320,15 @@
         c.setAttribute("aria-pressed", c === chip);
       });
 
-      document.querySelectorAll("#projects .cards > .card").forEach((card) => {
+      document.querySelectorAll("#project-cards > .card").forEach((card) => {
         card.hidden = filter !== "All" && card.dataset.category !== filter;
       });
     });
   });
 
 
-  // Details / Less buttons on the project cards.
+  // Details / Less buttons on the project cards (and the repos panel,
+  // which sets its own labels with data-closed / data-open).
   // The CSS rotates the + when aria-expanded is true.
   document.querySelectorAll("button.toggle").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -320,8 +336,30 @@
       const open = btn.getAttribute("aria-expanded") === "true";
 
       btn.setAttribute("aria-expanded", !open);
-      btn.querySelector("span").textContent = open ? "Details" : "Less";
+      btn.querySelector("span").textContent = open
+        ? (btn.dataset.closed || "Details")
+        : (btn.dataset.open || "Less");
       panel.hidden = open;
+    });
+  });
+
+
+  // Section headings open/close their section.
+  const setSection = (btn, open) => {
+    btn.setAttribute("aria-expanded", open);
+    document.getElementById(btn.getAttribute("aria-controls")).hidden = !open;
+  };
+
+  document.querySelectorAll(".section__toggle").forEach((btn) => {
+    btn.addEventListener("click", () =>
+      setSection(btn, btn.getAttribute("aria-expanded") !== "true"));
+  });
+
+  // clicking a nav link for a closed section opens it first
+  document.querySelectorAll('.nav__links a').forEach((a) => {
+    a.addEventListener("click", () => {
+      const btn = document.getElementById(`${a.getAttribute("href").slice(1)}-title`);
+      if (btn) setSection(btn, true);
     });
   });
 
@@ -363,20 +401,17 @@
   // visitor) and does two things with them:
   //   - repos attached to a project (repo: "..." in data.js) get a card
   //     inside that project's Details
-  //   - everything else goes in the Public repos section
+  //   - everything else goes in the Public repos panel under Projects
   // If GitHub doesn't answer, project slots keep their plain GitHub link
-  // and the Public repos section and its nav link go away.
+  // and the panel goes away.
   const loadRepos = async () => {
     const { user, hideForks, exclude = [], excludePrefixes = [] } = data.github;
 
-    const grid = document.getElementById("repo-cards");   // null if section is off
+    const grid = document.getElementById("repo-cards");   // null if Projects is off
     const slots = [...document.querySelectorAll(".repo-slot")];
     if (!grid && !slots.length) return;
 
-    const dropSection = () => {
-      document.getElementById("repos")?.remove();
-      document.querySelector('.nav__links a[href="#repos"]')?.parentElement.remove();
-    };
+    const dropPanel = () => document.getElementById("repo-drawer")?.remove();
 
     let repos;
     try {
@@ -384,7 +419,7 @@
       if (!res.ok) throw new Error(res.status);
       repos = await res.json();
     } catch {
-      return dropSection();
+      return dropPanel();
     }
 
     // fill the project slots, swapping the plain link for a full card.
@@ -408,7 +443,7 @@
       !exclude.includes(r.name) && !attached.includes(r.name) &&
       !excludePrefixes.some((pre) => r.name.startsWith(pre)));
 
-    if (!rest.length) return dropSection();
+    if (!rest.length) return dropPanel();
     grid.innerHTML = list(rest, (r) => repoCard(r));
   };
 

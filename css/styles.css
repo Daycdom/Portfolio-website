@@ -247,12 +247,38 @@ a {
 }
 
 .section__head {
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* the whole heading is the open/close button */
+.section__toggle {
   display: flex;
   align-items: baseline;
   gap: 14px;
-  margin-bottom: 32px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
+  width: 100%;
+  padding: 0 0 14px;
+  background: none;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* + on the far right, turns into x when open */
+.section__icon {
+  margin-left: auto;
+  font: 400 20px var(--font-mono);
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+
+.section__toggle[aria-expanded="true"] .section__icon {
+  transform: rotate(45deg);
+}
+
+.section__toggle:hover .section__title {
+  color: var(--accent);
 }
 
 /* the 01, 02... numbers */
@@ -444,6 +470,33 @@ a.toggle {
 
 a.toggle:hover span:first-child {
   text-decoration: underline;
+}
+
+/* Public repos subsection under the project cards.
+   Smaller version of a section heading, closed by default */
+.subsection {
+  margin-top: 40px;
+}
+
+.subsection__head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.subsection__toggle {
+  width: 100%;
+  justify-content: space-between;
+  font: 600 16px var(--font-sans);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.subsection__toggle:hover {
+  color: var(--accent);
+}
+
+.subsection .cards {
+  margin-top: 20px;
 }
 
 /* repo card inside a project's Details: a bit smaller, no lift */
