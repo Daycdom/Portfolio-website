@@ -53,6 +53,24 @@
       ${inner}
     </section>`;
 
+  // One GitHub repo as a card, same look as the project cards.
+  // Used in Public repos and inside a project's Details.
+  const repoCard = (r, extraClass = "") => `
+    <article class="card ${extraClass}">
+      <div class="card__meta">
+        <span>${esc(r.language || "Repo")}</span>
+        <span class="badge">★ ${r.stargazers_count}</span>
+      </div>
+
+      <h3 class="card__title">${esc(r.name)}</h3>
+      <p class="card__desc">${esc(r.description || "No description yet.")}</p>
+      ${r.topics?.length ? `<ul class="tags">${list(r.topics, (t) => `<li>${esc(t)}</li>`)}</ul>` : ""}
+
+      <a class="toggle" href="${esc(r.html_url)}" target="_blank" rel="noopener">
+        <span>Open on GitHub</span><span aria-hidden="true">↗</span>
+      </a>
+    </article>`;
+
   // GitHub / LinkedIn row. skips anything without a url, and
   // returns nothing at all if none are filled in
   const socials = (profile) => {
@@ -85,7 +103,7 @@
 
 
     // filter buttons + project cards
-    projects: ({ projects }) => {
+    projects: ({ projects, github }) => {
       // "All" plus each category once
       const categories = ["All", ...new Set(projects.map((p) => p.category))];
 
@@ -99,7 +117,7 @@
         <div class="cards">
           ${list(projects, (p) => {
             // skip the Details button if there's nothing extra to show
-            const hasMore = p.details.length || p.links.length;
+            const hasMore = p.details.length || p.links.length || p.repo;
             const id = `proj-${slug(p.name)}`;
 
             return `
@@ -118,6 +136,13 @@
                   ${p.details.length ? `<ul class="bullets">${list(p.details, (d) => `<li>${esc(d)}</li>`)}</ul>` : ""}
                   ${p.links.length ? `<div class="card__links">${list(p.links, (l) =>
                     `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`)}</div>` : ""}
+
+                  ${p.repo ? `
+                    <div class="repo-slot" data-repo="${esc(p.repo)}">
+                      <div class="card__links">
+                        <a href="https://github.com/${esc(github.user)}/${esc(p.repo)}" target="_blank" rel="noopener">GitHub ↗</a>
+                      </div>
+                    </div>` : ""}
                 </div>
 
                 <button class="toggle" aria-expanded="false" aria-controls="${id}">
@@ -127,6 +152,14 @@
           })}
         </div>`;
     },
+
+
+    // just an empty grid here, the cards get filled in by loadRepos()
+    // further down once GitHub answers
+    repos: () => `
+      <div class="cards" id="repo-cards" aria-live="polite">
+        <p class="card__desc">Loading repos from GitHub...</p>
+      </div>`,
 
 
     // timeline, then the "other experience" list if there is one
@@ -272,7 +305,7 @@
         c.setAttribute("aria-pressed", c === chip);
       });
 
-      document.querySelectorAll(".card").forEach((card) => {
+      document.querySelectorAll("#projects .cards > .card").forEach((card) => {
         card.hidden = filter !== "All" && card.dataset.category !== filter;
       });
     });
@@ -281,7 +314,7 @@
 
   // Details / Less buttons on the project cards.
   // The CSS rotates the + when aria-expanded is true.
-  document.querySelectorAll(".toggle").forEach((btn) => {
+  document.querySelectorAll("button.toggle").forEach((btn) => {
     btn.addEventListener("click", () => {
       const panel = document.getElementById(btn.getAttribute("aria-controls"));
       const open = btn.getAttribute("aria-expanded") === "true";
@@ -323,6 +356,57 @@
   }, { rootMargin: "-45% 0px -50% 0px" });
 
   document.querySelectorAll(".section").forEach((s) => spy.observe(s));
+
+
+  // Public repos.
+  // Asks GitHub for the repos (no key needed, 60 requests/hour per
+  // visitor) and does two things with them:
+  //   - repos attached to a project (repo: "..." in data.js) get a card
+  //     inside that project's Details
+  //   - everything else goes in the Public repos section
+  // If GitHub doesn't answer, project slots keep their plain GitHub link
+  // and the Public repos section and its nav link go away.
+  const loadRepos = async () => {
+    const { user, hideForks, exclude = [] } = data.github;
+
+    const grid = document.getElementById("repo-cards");   // null if section is off
+    const slots = [...document.querySelectorAll(".repo-slot")];
+    if (!grid && !slots.length) return;
+
+    const dropSection = () => {
+      document.getElementById("repos")?.remove();
+      document.querySelector('.nav__links a[href="#repos"]')?.parentElement.remove();
+    };
+
+    let repos;
+    try {
+      const res = await fetch(`https://api.github.com/users/${user}/repos?sort=pushed&per_page=100`);
+      if (!res.ok) throw new Error(res.status);
+      repos = await res.json();
+    } catch {
+      return dropSection();
+    }
+
+    // fill the project slots, swapping the plain link for a full card
+    slots.forEach((slot) => {
+      const r = repos.find((r) => r.name === slot.dataset.repo);
+      if (r) slot.innerHTML = repoCard(r, "card--nested");
+    });
+
+    if (!grid) return;
+
+    // attached repos are already shown on their project
+    const attached = data.projects.map((p) => p.repo).filter(Boolean);
+
+    const rest = repos.filter((r) =>
+      !(hideForks && r.fork) && !r.archived &&
+      !exclude.includes(r.name) && !attached.includes(r.name));
+
+    if (!rest.length) return dropSection();
+    grid.innerHTML = list(rest, (r) => repoCard(r));
+  };
+
+  loadRepos();
 
 
   // Fade sections in the first time they scroll into view.

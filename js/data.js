@@ -53,6 +53,7 @@ const PORTFOLIO = {
   sections: [
     { id: "about",      label: "About",      enabled: true },
     { id: "projects",   label: "Projects",   enabled: true },
+    { id: "repos",      label: "Public repos", enabled: true },
     { id: "experience", label: "Experience", enabled: true },
     { id: "skills",     label: "Skills",     enabled: true },
     { id: "education",  label: "Education",  enabled: true },
@@ -60,11 +61,25 @@ const PORTFOLIO = {
   ],
 
 
+  // ---- GitHub ----
+  // The "Public repos" section pulls these live from GitHub's API,
+  // so a new public repo shows up on its own. Private ones never do.
+  github: {
+    user: "Daycdom",
+    hideForks: true,
+    exclude: [],   // repo names to leave out, e.g. ["old-test-repo"]
+  },
+
+
   // ---- Projects ----
   // Each one is a card. A new category automatically gets a filter button.
   // details only show when you click "Details" on the card.
-  // links is empty for now since the repos are private. Once one is public:
-  //   links: [{ label: "GitHub", url: "https://github.com/..." }]
+  // links is for anything extra, e.g. [{ label: "Demo", url: "https://..." }]
+  //
+  // Once a project's repo is public, add its repo name:
+  //   repo: "Portfolio-website",
+  // That puts a GitHub link in the card's Details and takes the repo out
+  // of the Public repos section so it isn't listed twice.
   projects: [
     {
       name: "AI Screen Copilot",
@@ -79,6 +94,7 @@ const PORTFOLIO = {
         "ML-based PII redaction layer in development to censor sensitive data before any external API call.",
       ],
       links: [],
+      // repo: "",
     },
 
     {
@@ -92,6 +108,7 @@ const PORTFOLIO = {
         "Manages game state, entity systems, and rendering across multiple subsystems.",
       ],
       links: [],
+      // repo: "",
     },
 
     {
@@ -103,6 +120,7 @@ const PORTFOLIO = {
         "Designed a multi-device home network with custom subnetting, firewall rules, and VPN access.",
       details: [],
       links: [],
+      // repo: "",
     },
 
     {
@@ -114,6 +132,7 @@ const PORTFOLIO = {
         "Administered dedicated game servers with port forwarding, firewall configuration, and performance monitoring.",
       details: [],
       links: [],
+      // repo: "",
     },
 
     {
@@ -125,6 +144,7 @@ const PORTFOLIO = {
         "Assembled and configured 25+ custom systems, from component selection through OS setup and troubleshooting.",
       details: [],
       links: [],
+      // repo: "",
     },
   ],
 

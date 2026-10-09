@@ -437,6 +437,26 @@ a {
   color: var(--accent);
 }
 
+/* the GitHub link on repo cards is an <a>, not a button */
+a.toggle {
+  text-decoration: none;
+}
+
+a.toggle:hover span:first-child {
+  text-decoration: underline;
+}
+
+/* repo card inside a project's Details: a bit smaller, no lift */
+.card--nested {
+  margin-top: 14px;
+  padding: 16px;
+  background: var(--bg);
+}
+
+.card--nested:hover {
+  transform: none;
+}
+
 /* + turns into x when open */
 .toggle__icon {
   transition: transform 0.2s;

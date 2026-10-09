@@ -13,7 +13,8 @@ Dominic Caulfield-Duverger, Oct 9, 2026
 ## Notes
 
 - New project: copy one of the entries in `projects`. New categories get a filter button automatically.
-- When a repo goes public, add it to that project's `links`, e.g. `[{ label: "GitHub", url: "..." }]`
+- Public repos load from GitHub on their own (settings in `github` in data.js)
+- To attach a repo to a project, add `repo: "repo-name"` to it. It moves from Public repos into that project's Details
 - GitHub/LinkedIn links are in `profile.socials`. Leave a url empty to hide it
 - New job goes at the top of `experience`
 - Hide a section with `enabled: false` in `sections`, or move lines around to reorder
