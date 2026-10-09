@@ -108,7 +108,7 @@ const PORTFOLIO = {
       status: "Live",
       stack: ["HTML", "CSS", "JavaScript", "Caddy", "Tailscale"],
       description:
-        "This site. Hand-written, data-driven, and self-hosted on my home server.",
+        "This site. Data-driven and self-hosted on my home server.",
       details: [
         "All content lives in one data file, so the page is built from it instead of hand-edited HTML.",
         "Public repos load live from the GitHub API and can be attached to project cards.",

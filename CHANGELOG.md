@@ -5,6 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 9, 2026
 
+- Reworded the Portfolio Website card description
 - Every section can be opened/closed from its heading
 - Public repos is now a closed subsection at the bottom of Projects instead of its own section
 - Coursework repos (names starting with "CS") are hidden from Public repos
