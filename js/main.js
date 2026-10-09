@@ -53,6 +53,16 @@
       ${inner}
     </section>`;
 
+  // GitHub / LinkedIn row. skips anything without a url, and
+  // returns nothing at all if none are filled in
+  const socials = (profile) => {
+    const links = (profile.socials || []).filter((l) => l.url);
+    if (!links.length) return "";
+
+    return `<ul class="socials">${list(links, (l) =>
+      `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a></li>`)}</ul>`;
+  };
+
 
   // ---------------------------------------------------------------
   // Section renderers
@@ -178,7 +188,8 @@
       <div class="contact">
         <span class="contact__email">${esc(profile.email)}</span>
         <button class="btn" data-copy="${esc(profile.email)}">Copy email</button>
-      </div>`,
+      </div>
+      ${socials(profile)}`,
   };
 
 
@@ -211,7 +222,8 @@
   document.getElementById("hero").innerHTML = `
     <p class="hero__eyebrow">${esc(data.profile.title)}${data.profile.location ? ` · ${esc(data.profile.location)}` : ""}</p>
     <h1 class="hero__name">${esc(data.profile.name)}</h1>
-    <p class="hero__tagline">${esc(data.profile.tagline)}</p>`;
+    <p class="hero__tagline">${esc(data.profile.tagline)}</p>
+    ${socials(data.profile)}`;
 
   document.getElementById("content").innerHTML = list(sections, (s, i) =>
     section(s.id, s.label, RENDERERS[s.id](data), i));

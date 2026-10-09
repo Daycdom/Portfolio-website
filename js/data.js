@@ -22,6 +22,12 @@ const PORTFOLIO = {
 
     email: "dominic.cauduverger@gmail.com",
 
+    // shown under the tagline and in Contact. empty url = hidden
+    socials: [
+      { label: "GitHub",   url: "https://github.com/Daycdom" },
+      { label: "LinkedIn", url: "" },
+    ],
+
     tagline:
       "Configuring, networking, and troubleshooting systems at scale, and building software on the side.",
 

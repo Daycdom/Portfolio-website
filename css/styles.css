@@ -591,6 +591,26 @@ a {
   word-break: break-all;   /* so it can wrap on phones */
 }
 
+/* GitHub / LinkedIn links (hero + contact) */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 24px;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+}
+
+.socials a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.socials a:hover {
+  text-decoration: underline;
+}
+
 .btn {
   padding: 8px 16px;
   background: var(--text);
