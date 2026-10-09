@@ -25,7 +25,7 @@ const PORTFOLIO = {
     // shown under the tagline and in Contact. empty url = hidden
     socials: [
       { label: "GitHub",   url: "https://github.com/Daycdom" },
-      { label: "LinkedIn", url: "" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/in/dominic-caulfield-duverger-44265a18a" },
     ],
 
     tagline:
