@@ -5,6 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 9, 2026
 
+- Coursework repos (names starting with "CS") are hidden from Public repos
 - Added a Portfolio Website project card, attached to its repo (shows as private until it's public)
 - Added a Public repos section, pulled live from GitHub, same card style as Projects
 - Projects can point at a repo (`repo: "name"`), which shows that repo's card in Details

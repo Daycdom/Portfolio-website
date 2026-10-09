@@ -367,7 +367,7 @@
   // If GitHub doesn't answer, project slots keep their plain GitHub link
   // and the Public repos section and its nav link go away.
   const loadRepos = async () => {
-    const { user, hideForks, exclude = [] } = data.github;
+    const { user, hideForks, exclude = [], excludePrefixes = [] } = data.github;
 
     const grid = document.getElementById("repo-cards");   // null if section is off
     const slots = [...document.querySelectorAll(".repo-slot")];
@@ -405,7 +405,8 @@
 
     const rest = repos.filter((r) =>
       !(hideForks && r.fork) && !r.archived &&
-      !exclude.includes(r.name) && !attached.includes(r.name));
+      !exclude.includes(r.name) && !attached.includes(r.name) &&
+      !excludePrefixes.some((pre) => r.name.startsWith(pre)));
 
     if (!rest.length) return dropSection();
     grid.innerHTML = list(rest, (r) => repoCard(r));

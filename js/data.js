@@ -68,6 +68,10 @@ const PORTFOLIO = {
     user: "Daycdom",
     hideForks: true,
     exclude: [],   // repo names to leave out, e.g. ["old-test-repo"]
+
+    // hide any repo whose name starts with one of these (case sensitive).
+    // "CS" = university coursework
+    excludePrefixes: ["CS"],
   },
 
 
