@@ -1,54 +1,91 @@
 /* ==========================================================================
    data.js — ALL site content lives here.
+
+   Author:  Dominic Caulfield-Duverger
+   Date:    October 9, 2026
    --------------------------------------------------------------------------
-   To update the site, edit this file only. main.js reads PORTFOLIO and
-   renders every section automatically.
+
+   To update the site, edit this file only. main.js reads the PORTFOLIO
+   object below and renders every section from it automatically.
 
    Common edits:
-     • New job        → add an object to `experience` (newest first)
-     • New project    → add an object to `projects`
-     • Repo goes public → add { label, url } to that project's `links` array
-     • New skill group → add an object to `skills`
-     • New section    → add an entry to `sections` and a renderer in main.js
+     • New job           → add an object to `experience` (newest first)
+     • New project       → add an object to `projects`
+     • Repo goes public  → add { label, url } to that project's `links`
+     • New skill group   → add an object to `skills`
+     • New section       → add an entry to `sections` and a renderer in main.js
+
+   Tip: every list item ends with a comma, so you can copy a whole block
+   (from its opening { to its closing },) and paste it as a new entry.
    ========================================================================== */
 
 const PORTFOLIO = {
-  /* ---- Identity / header ------------------------------------------------ */
+
+  /* ------------------------------------------------------------------------
+     PROFILE
+     Your name, headline and summary. Shown in the hero (top of the page),
+     the About section, the nav initials and the Contact section.
+     ------------------------------------------------------------------------ */
   profile: {
     name: "Dominic Caulfield-Duverger",
     title: "IT & Software Professional",
-    // location: "City, ST",   // optional; shown in the hero when set
+
+    // Optional. Uncomment to show a location next to your title in the hero.
+    // location: "City, ST",
+
+    // Shown as plain text in the Contact section, with a "Copy email" button.
     email: "dominic.cauduverger@gmail.com",
-    // Short line shown under the name in the hero.
+
+    // One-line pitch shown under your name at the top of the page.
     tagline:
       "Configuring, networking, and troubleshooting systems at scale, and building software on the side.",
+
+    // Paragraph shown at the start of the About section.
     summary:
-      "Entry-level IT and software professional with hands-on experience in device configuration, networking, and troubleshooting. Background in computer science with programming experience in Python, C++, and Java. Adept at leading technical projects, training others, and delivering results under deadline.",
-    // Quick facts shown as a small grid in the About section.
+      "Entry-level IT and software professional with hands-on experience in device configuration, " +
+      "networking, and troubleshooting. Background in computer science with programming experience " +
+      "in Python, C++, and Java. Adept at leading technical projects, training others, and delivering " +
+      "results under deadline.",
+
+    // Quick-fact tiles in the About section. Four fit nicely on one row.
     highlights: [
-      { value: "25+", label: "Custom PCs built" },
+      { value: "25+",  label: "Custom PCs built" },
       { value: "A.S.", label: "Computer Science" },
-      { value: "8", label: "Programming languages" },
+      { value: "8",    label: "Programming languages" },
       { value: "Lead", label: "Configuration Technician" },
     ],
   },
 
-  /* ---- Navigation / section order --------------------------------------
-     `id` must match a key in RENDERERS (main.js).
-     Reorder, hide (enabled: false), or add sections here.               */
+
+  /* ------------------------------------------------------------------------
+     SECTIONS
+     Controls which sections appear and in what order (also the nav links).
+       id       must match a renderer name in main.js (RENDERERS)
+       label    text used in the nav and the section heading
+       enabled  set to false to hide a section without deleting its data
+     ------------------------------------------------------------------------ */
   sections: [
-    { id: "about", label: "About", enabled: true },
-    { id: "projects", label: "Projects", enabled: true },
+    { id: "about",      label: "About",      enabled: true },
+    { id: "projects",   label: "Projects",   enabled: true },
     { id: "experience", label: "Experience", enabled: true },
-    { id: "skills", label: "Skills", enabled: true },
-    { id: "education", label: "Education", enabled: true },
-    { id: "contact", label: "Contact", enabled: true },
+    { id: "skills",     label: "Skills",     enabled: true },
+    { id: "education",  label: "Education",  enabled: true },
+    { id: "contact",    label: "Contact",    enabled: true },
   ],
 
-  /* ---- Projects ---------------------------------------------------------
-     status:  free text badge, e.g. "In development", "Complete"
-     links:   [] for now (repos are private). Example for later:
-              links: [{ label: "GitHub", url: "https://github.com/..." }]   */
+
+  /* ------------------------------------------------------------------------
+     PROJECTS
+     Each project becomes a card in the Projects section.
+       name         card title
+       category     used for the filter chips (a new category = a new chip)
+       status       small badge, e.g. "In development", "Complete"
+       stack        tech tags shown on the card
+       description  one or two sentences, always visible
+       details      extra bullet points, shown when "Details" is clicked
+       links        [] for now (repos are private). When one goes public:
+                    links: [{ label: "GitHub", url: "https://github.com/..." }]
+     ------------------------------------------------------------------------ */
   projects: [
     {
       name: "AI Screen Copilot",
@@ -64,6 +101,7 @@ const PORTFOLIO = {
       ],
       links: [],
     },
+
     {
       name: "2D Farming & Town-Builder RPG",
       category: "Game Dev",
@@ -76,6 +114,7 @@ const PORTFOLIO = {
       ],
       links: [],
     },
+
     {
       name: "Home Network",
       category: "Infrastructure",
@@ -86,6 +125,7 @@ const PORTFOLIO = {
       details: [],
       links: [],
     },
+
     {
       name: "Game Server Hosting",
       category: "Infrastructure",
@@ -96,6 +136,7 @@ const PORTFOLIO = {
       details: [],
       links: [],
     },
+
     {
       name: "PC Builds",
       category: "Hardware",
@@ -108,7 +149,13 @@ const PORTFOLIO = {
     },
   ],
 
-  /* ---- Experience (newest first) --------------------------------------- */
+
+  /* ------------------------------------------------------------------------
+     EXPERIENCE
+     Shown as a timeline, in the order listed here (put the newest first).
+       location  optional; leave it out to show just the company name
+       points    bullet points under the role
+     ------------------------------------------------------------------------ */
   experience: [
     {
       role: "Lead Configuration Technician",
@@ -124,6 +171,7 @@ const PORTFOLIO = {
         "Track IT assets and maintain inventory accuracy across concurrent projects.",
       ],
     },
+
     {
       role: "Sales Associate",
       company: "Best Buy",
@@ -136,13 +184,18 @@ const PORTFOLIO = {
       ],
     },
   ],
-  // One-line extras shown beneath the timeline. Set to [] to hide.
+
+  // Short one-line extras shown under the timeline. Set to [] to hide them.
   otherExperience: [
     "Seasonal Production / Warehousing, Flower Window Boxes (Jun–Jul 2025)",
     "Delivery Driver, DoorDash (2020–2025)",
   ],
 
-  /* ---- Skills ----------------------------------------------------------- */
+
+  /* ------------------------------------------------------------------------
+     SKILLS
+     One block per group; each item becomes a small tag.
+     ------------------------------------------------------------------------ */
   skills: [
     {
       group: "Languages",
@@ -162,7 +215,11 @@ const PORTFOLIO = {
     },
   ],
 
-  /* ---- Education & certifications -------------------------------------- */
+
+  /* ------------------------------------------------------------------------
+     EDUCATION & CERTIFICATIONS
+     Rendered side by side in the Education section.
+     ------------------------------------------------------------------------ */
   education: [
     {
       degree: "Associate of Science in Computer Science",
@@ -170,8 +227,9 @@ const PORTFOLIO = {
       date: "Jun 2024",
     },
   ],
+
   certifications: [
     { name: "CompTIA A+", status: "In progress" },
-    { name: "OSHA 10", status: "2018" },
+    { name: "OSHA 10",    status: "2018" },
   ],
 };

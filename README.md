@@ -1,5 +1,7 @@
 # Portfolio site
 
+_Author: Dominic Caulfield-Duverger · October 9, 2026_
+
 Plain HTML, CSS and JavaScript. No build step, no dependencies.
 
 ## Run it

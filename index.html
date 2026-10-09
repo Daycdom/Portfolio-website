@@ -1,36 +1,67 @@
 <!doctype html>
+<!--
+  ==========================================================================
+  index.html — page shell for the portfolio.
+
+  Author:  Dominic Caulfield-Duverger
+  Date:    October 9, 2026
+  ==========================================================================
+
+  This file is intentionally almost empty. Every piece of content is
+  rendered by js/main.js from the data in js/data.js, so to change what
+  the site says, edit js/data.js rather than this file.
+-->
 <html lang="en">
 <head>
+  <!-- Basic page setup -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dominic Caulfield-Duverger · Portfolio</title>
   <meta name="description" content="Portfolio of Dominic Caulfield-Duverger: IT and software professional." />
 
-  <!-- Fonts: Inter for text, JetBrains Mono for small technical accents -->
+
+  <!-- Fonts: Inter for body text, JetBrains Mono for small technical accents.
+       preconnect starts the connection early so the fonts load faster. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+
+  <!-- Site styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
+<!-- id="top" is the target of the initials logo ("back to top") in the nav. -->
 <body id="top">
-  <!--
-    This page is a shell. Every piece of content is rendered by js/main.js
-    from the data in js/data.js. To change content, edit js/data.js.
-  -->
+
+  <!-- Navigation bar (filled in by main.js) -->
   <nav id="nav" class="nav" aria-label="Primary"></nav>
 
+
   <main class="container">
+
+    <!-- Name, title and tagline at the top of the page (filled in by main.js) -->
     <header id="hero" class="hero"></header>
+
+    <!-- All numbered sections: About, Projects, Experience, ... (filled in by main.js) -->
     <div id="content"></div>
+
   </main>
 
+
+  <!-- Copyright line (filled in by main.js) -->
   <footer id="footer" class="footer container"></footer>
 
-  <noscript><p class="container">This portfolio needs JavaScript enabled to display.</p></noscript>
 
-  <!-- Order matters: data first, then the renderer. -->
+  <!-- Shown only if the visitor has JavaScript turned off. -->
+  <noscript>
+    <p class="container">This portfolio needs JavaScript enabled to display.</p>
+  </noscript>
+
+
+  <!-- Scripts. Order matters: data.js defines PORTFOLIO, which main.js reads. -->
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+
 </body>
 </html>
