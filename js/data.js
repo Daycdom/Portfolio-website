@@ -1,53 +1,37 @@
-/* ==========================================================================
-   data.js — ALL site content lives here.
-
-   Author:  Dominic Caulfield-Duverger
-   Date:    October 9, 2026
-   --------------------------------------------------------------------------
-
-   To update the site, edit this file only. main.js reads the PORTFOLIO
-   object below and renders every section from it automatically.
-
-   Common edits:
-     • New job           → add an object to `experience` (newest first)
-     • New project       → add an object to `projects`
-     • Repo goes public  → add { label, url } to that project's `links`
-     • New skill group   → add an object to `skills`
-     • New section       → add an entry to `sections` and a renderer in main.js
-
-   Tip: every list item ends with a comma, so you can copy a whole block
-   (from its opening { to its closing },) and paste it as a new entry.
-   ========================================================================== */
+/*
+ * data.js
+ * Dominic Caulfield-Duverger
+ * Oct 9, 2026
+ *
+ * All the text on the site lives in here. main.js reads PORTFOLIO and
+ * builds the page from it, so most updates should only touch this file.
+ *
+ * To add a job/project/skill, copy an existing entry and edit it.
+ * To add a whole new section, see the note at the top of main.js.
+ */
 
 const PORTFOLIO = {
 
-  /* ------------------------------------------------------------------------
-     PROFILE
-     Your name, headline and summary. Shown in the hero (top of the page),
-     the About section, the nav initials and the Contact section.
-     ------------------------------------------------------------------------ */
+  // ---- Profile ----
+  // Used in the header, About, Contact and the nav initials.
   profile: {
     name: "Dominic Caulfield-Duverger",
     title: "IT & Software Professional",
 
-    // Optional. Uncomment to show a location next to your title in the hero.
-    // location: "City, ST",
+    // location: "City, ST",   // uncomment to show it next to the title
 
-    // Shown as plain text in the Contact section, with a "Copy email" button.
     email: "dominic.cauduverger@gmail.com",
 
-    // One-line pitch shown under your name at the top of the page.
     tagline:
       "Configuring, networking, and troubleshooting systems at scale, and building software on the side.",
 
-    // Paragraph shown at the start of the About section.
     summary:
       "Entry-level IT and software professional with hands-on experience in device configuration, " +
       "networking, and troubleshooting. Background in computer science with programming experience " +
       "in Python, C++, and Java. Adept at leading technical projects, training others, and delivering " +
       "results under deadline.",
 
-    // Quick-fact tiles in the About section. Four fit nicely on one row.
+    // the stat boxes in About (4 fits on one row)
     highlights: [
       { value: "25+",  label: "Custom PCs built" },
       { value: "A.S.", label: "Computer Science" },
@@ -57,13 +41,9 @@ const PORTFOLIO = {
   },
 
 
-  /* ------------------------------------------------------------------------
-     SECTIONS
-     Controls which sections appear and in what order (also the nav links).
-       id       must match a renderer name in main.js (RENDERERS)
-       label    text used in the nav and the section heading
-       enabled  set to false to hide a section without deleting its data
-     ------------------------------------------------------------------------ */
+  // ---- Sections ----
+  // Order here = order on the page and in the nav.
+  // id has to match a renderer in main.js. Set enabled: false to hide one.
   sections: [
     { id: "about",      label: "About",      enabled: true },
     { id: "projects",   label: "Projects",   enabled: true },
@@ -74,18 +54,11 @@ const PORTFOLIO = {
   ],
 
 
-  /* ------------------------------------------------------------------------
-     PROJECTS
-     Each project becomes a card in the Projects section.
-       name         card title
-       category     used for the filter chips (a new category = a new chip)
-       status       small badge, e.g. "In development", "Complete"
-       stack        tech tags shown on the card
-       description  one or two sentences, always visible
-       details      extra bullet points, shown when "Details" is clicked
-       links        [] for now (repos are private). When one goes public:
-                    links: [{ label: "GitHub", url: "https://github.com/..." }]
-     ------------------------------------------------------------------------ */
+  // ---- Projects ----
+  // Each one is a card. A new category automatically gets a filter button.
+  // details only show when you click "Details" on the card.
+  // links is empty for now since the repos are private. Once one is public:
+  //   links: [{ label: "GitHub", url: "https://github.com/..." }]
   projects: [
     {
       name: "AI Screen Copilot",
@@ -150,12 +123,8 @@ const PORTFOLIO = {
   ],
 
 
-  /* ------------------------------------------------------------------------
-     EXPERIENCE
-     Shown as a timeline, in the order listed here (put the newest first).
-       location  optional; leave it out to show just the company name
-       points    bullet points under the role
-     ------------------------------------------------------------------------ */
+  // ---- Experience ----
+  // Newest first. location is optional.
   experience: [
     {
       role: "Lead Configuration Technician",
@@ -185,17 +154,14 @@ const PORTFOLIO = {
     },
   ],
 
-  // Short one-line extras shown under the timeline. Set to [] to hide them.
+  // smaller stuff listed under the timeline ([] hides it)
   otherExperience: [
     "Seasonal Production / Warehousing, Flower Window Boxes (Jun–Jul 2025)",
     "Delivery Driver, DoorDash (2020–2025)",
   ],
 
 
-  /* ------------------------------------------------------------------------
-     SKILLS
-     One block per group; each item becomes a small tag.
-     ------------------------------------------------------------------------ */
+  // ---- Skills ----
   skills: [
     {
       group: "Languages",
@@ -216,10 +182,7 @@ const PORTFOLIO = {
   ],
 
 
-  /* ------------------------------------------------------------------------
-     EDUCATION & CERTIFICATIONS
-     Rendered side by side in the Education section.
-     ------------------------------------------------------------------------ */
+  // ---- Education / certs ----
   education: [
     {
       degree: "Associate of Science in Computer Science",

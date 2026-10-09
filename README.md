@@ -1,29 +1,27 @@
 # Portfolio site
 
-_Author: Dominic Caulfield-Duverger · October 9, 2026_
+Dominic Caulfield-Duverger, Oct 9, 2026
 
-Plain HTML, CSS and JavaScript. No build step, no dependencies.
+My portfolio. Plain HTML/CSS/JS, nothing to build or install.
 
-## Run it
+## Running it
 
-- **Quickest:** open `index.html` in a browser.
-- **In the dev container:** open this folder in Cursor, run **Dev Containers: Reopen in Container**, then `npm start` and visit http://localhost:3000. Live Server (right-click `index.html` → *Open with Live Server*) also works and reloads on save.
-- **Deploy:** drop the folder onto any static host (GitHub Pages, Netlify, Vercel).
+- Open `index.html` in a browser, or
+- Reopen the folder in the dev container, run `npm start`, go to http://localhost:3000
+- Live Server works too (right-click `index.html` > Open with Live Server), reloads on save
 
 ## Files
 
-| File | What it does |
-| --- | --- |
-| `index.html` | Empty page shell. You rarely need to touch it. |
-| `js/data.js` | **All content.** Edit this to change text, add jobs, projects, skills. |
-| `js/main.js` | Renders each section from `data.js` and wires up the interactions. |
-| `css/styles.css` | Styling. Colors, fonts and spacing are tokens at the top. |
+- `index.html` - page shell, barely needs touching
+- `js/data.js` - all the content. Most edits happen here
+- `js/main.js` - builds the page from data.js + the interactive stuff
+- `css/styles.css` - styling, colors/fonts are variables at the top
 
-## Common edits
+## Notes for later
 
-- **Add a project:** copy an object in `projects` in `js/data.js`. A new `category` automatically gets its own filter chip.
-- **Link a repo once it's public:** set that project's `links` to `[{ label: "GitHub", url: "https://github.com/..." }]`. A link row appears under its Details.
-- **Add a job:** add an object to the top of `experience`.
-- **Hide or reorder a section:** edit `sections` (set `enabled: false`, or move the line).
-- **Change the accent color:** edit `--accent` in `css/styles.css` (light and dark values).
-- **Add a new section:** add it to `sections`, add its data to `PORTFOLIO`, then add a matching `RENDERERS.<id>` function in `js/main.js`. The numbering, nav link and scroll highlighting are automatic.
+- New project: copy one of the entries in `projects`. New categories get a filter button automatically.
+- When a repo goes public, add it to that project's `links`, e.g. `[{ label: "GitHub", url: "..." }]`
+- New job goes at the top of `experience`
+- Hide a section with `enabled: false` in `sections`, or move lines around to reorder
+- Accent color is `--accent` in styles.css (there's a light and dark value)
+- New section: add it to `sections`, add its data, then add a function with the same name to `RENDERERS` in main.js

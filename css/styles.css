@@ -1,61 +1,43 @@
-/* ==========================================================================
-   styles.css — all styling for the portfolio.
-
-   Author:  Dominic Caulfield-Duverger
-   Date:    October 9, 2026
-   --------------------------------------------------------------------------
-
-   Contents:
-     1. Design tokens   colors, fonts, spacing (change the look here)
-     2. Base            resets and shared utility classes
-     3. Layout          nav, hero, sections, footer
-     4. Components      stats, chips, cards, tags, timeline, skills,
-                        education, contact
-     5. Motion          fade-in animation and reduced-motion support
-     6. Responsive      adjustments for small screens
-
-   Class names follow a light BEM style:
-     .card           a block
-     .card__title    an element inside that block
-     .tags--lg       a variation of a block
-     .is-active      a state toggled by JavaScript
-   ========================================================================== */
+/*
+ * styles.css
+ * Dominic Caulfield-Duverger
+ * Oct 9, 2026
+ *
+ * Order: variables, base stuff, layout, components, animation, mobile.
+ * Colors/fonts/spacing are all variables at the top, so start there
+ * if you want to change the look.
+ */
 
 
-/* --------------------------------------------------------------------------
-   1. DESIGN TOKENS
-   CSS variables used throughout the file. Change a value here and it
-   updates everywhere it's used.
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Variables
+   Change these and it updates everywhere.
+   ------------------------------------------------------------------ */
 
 :root {
-  /* Colors (light theme) */
-  --bg:          #fafaf9;   /* page background */
-  --surface:     #ffffff;   /* cards and tiles */
-  --text:        #18181b;   /* main text */
-  --muted:       #6b6b73;   /* secondary text */
-  --line:        #e7e5e4;   /* borders and dividers */
-  --accent:      #2563eb;   /* the single accent color; swap to rebrand */
-  --accent-soft: #eff4ff;   /* pale accent for badge backgrounds */
+  /* colors (light) */
+  --bg:          #fafaf9;
+  --surface:     #ffffff;
+  --text:        #18181b;
+  --muted:       #6b6b73;
+  --line:        #e7e5e4;
+  --accent:      #2563eb;   /* main accent */
+  --accent-soft: #eff4ff;
 
-  /* Fonts (loaded from Google Fonts in index.html, with system fallbacks) */
+  /* fonts (loaded in index.html) */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
-  /* Sizing and spacing.
-     clamp(min, preferred, max) scales smoothly with screen width. */
+  /* spacing - clamp() scales with screen width */
   --radius:      10px;
   --max-width:   880px;
-  --gutter:      clamp(16px, 4vw, 32px);     /* left/right page padding */
-  --section-gap: clamp(72px, 10vw, 120px);   /* space between sections */
+  --gutter:      clamp(16px, 4vw, 32px);     /* page side padding */
+  --section-gap: clamp(72px, 10vw, 120px);
 }
 
 
-/* Dark theme colors.
-   The same values are defined twice:
-     - the first block follows the visitor's OS setting, unless they chose
-       light mode with the toggle (data-theme="light" on <html>)
-     - the second block applies when they chose dark mode with the toggle */
+/* Dark mode. Same colors twice: once for the OS setting (unless the
+   toggle forced light), once for when the toggle forces dark. */
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -80,12 +62,12 @@
 }
 
 
-/* --------------------------------------------------------------------------
-   2. BASE
-   Browser resets and small utility classes shared across the page.
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Base
+   Resets + a few shared classes.
+   ------------------------------------------------------------------ */
 
-/* Make width/height include padding and borders (much easier to reason about). */
+/* padding/border count toward width */
 *,
 *::before,
 *::after {
@@ -93,8 +75,8 @@
 }
 
 html {
-  scroll-behavior: smooth;   /* smooth scrolling when clicking nav links */
-  scroll-padding-top: 72px;  /* stop headings hiding under the sticky nav */
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;  /* so headings don't end up under the nav */
 }
 
 body {
@@ -103,10 +85,10 @@ body {
   color: var(--text);
   font: 400 16px/1.65 var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  transition: background 0.25s, color 0.25s;  /* smooth theme switch */
+  transition: background 0.25s, color 0.25s;
 }
 
-/* Remove default browser margins and list bullets; spacing is set per component. */
+/* kill default margins and bullets, spacing is set per component */
 h1, h2, h3, p, ul, ol, dl, dd {
   margin: 0;
 }
@@ -117,7 +99,6 @@ ol {
   list-style: none;
 }
 
-/* Buttons and links inherit the surrounding font and color by default. */
 button {
   font: inherit;
   color: inherit;
@@ -128,13 +109,12 @@ a {
   color: inherit;
 }
 
-/* Make sure anything with the hidden attribute really is hidden,
-   even if a component sets its own display value. */
+/* make sure [hidden] wins over any display: flex etc */
 [hidden] {
   display: none !important;
 }
 
-/* Visible outline for keyboard users only (not on mouse click). */
+/* outline for keyboard users only */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -142,21 +122,19 @@ a {
 }
 
 
-/* ---- Utility classes ---- */
+/* ---- shared classes ---- */
 
-/* Centers content and limits line length for readability. */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
-/* Secondary (grey) text. */
 .muted {
   color: var(--muted);
 }
 
-/* Small uppercase monospace heading, e.g. "LANGUAGES" in Skills. */
+/* small uppercase headings like LANGUAGES in Skills */
 .label {
   margin-bottom: 14px;
   font: 500 12px/1 var(--font-mono);
@@ -165,19 +143,17 @@ a {
   color: var(--muted);
 }
 
-/* Slightly larger intro paragraph. */
 .lead {
-  max-width: 64ch;   /* ~64 characters per line */
+  max-width: 64ch;
   font-size: 18px;
 }
 
 
-/* --------------------------------------------------------------------------
-   3. LAYOUT
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------------ */
 
-/* ---- Nav bar ----
-   Sticks to the top while scrolling, with a frosted-glass background. */
+/* ---- nav (sticky, frosted glass) ---- */
 
 .nav {
   position: sticky;
@@ -189,20 +165,19 @@ a {
   gap: 24px;
   padding: 14px var(--gutter);
 
-  /* 82% page color + blur behind it = frosted glass */
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
 
-/* Initials logo on the left. */
+/* the DC initials */
 .nav__mark {
   font: 600 15px var(--font-mono);
   letter-spacing: 0.02em;
   text-decoration: none;
 }
 
-/* Section links, pushed to the right. Scrolls sideways on narrow screens. */
+/* scrolls sideways if it doesn't fit on small screens */
 .nav__links {
   display: flex;
   gap: 20px;
@@ -219,14 +194,13 @@ a {
   transition: color 0.15s;
 }
 
-/* Hovered link, and the link for the section currently on screen
-   (.is-current is added by the scroll-spy in main.js). */
+/* is-current comes from the scroll-spy in main.js */
 .nav__links a:hover,
 .nav__links a.is-current {
   color: var(--text);
 }
 
-/* Round light/dark toggle button. */
+/* light/dark button */
 .theme-toggle {
   flex: none;
   display: grid;
@@ -239,14 +213,12 @@ a {
 }
 
 
-/* ---- Hero ----
-   The big name block at the top of the page. */
+/* ---- hero (name at the top) ---- */
 
 .hero {
   padding: clamp(80px, 14vw, 160px) 0 clamp(56px, 8vw, 96px);
 }
 
-/* Small accent-colored line above the name. */
 .hero__eyebrow {
   margin-bottom: 18px;
   font: 500 13px var(--font-mono);
@@ -257,7 +229,7 @@ a {
   font-size: clamp(38px, 7vw, 64px);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.035em;   /* tighter tracking for large headings */
+  letter-spacing: -0.035em;
 }
 
 .hero__tagline {
@@ -268,8 +240,7 @@ a {
 }
 
 
-/* ---- Sections ----
-   Every content section shares this spacing and numbered heading. */
+/* ---- sections ---- */
 
 .section {
   padding-top: var(--section-gap);
@@ -284,7 +255,7 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-/* The "01", "02" number before each heading. */
+/* the 01, 02... numbers */
 .section__num {
   font: 500 13px var(--font-mono);
   color: var(--accent);
@@ -297,7 +268,7 @@ a {
 }
 
 
-/* ---- Footer ---- */
+/* ---- footer ---- */
 
 .footer {
   display: flex;
@@ -312,13 +283,12 @@ a {
 }
 
 
-/* --------------------------------------------------------------------------
-   4. COMPONENTS
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Components
+   ------------------------------------------------------------------ */
 
-/* ---- About: quick-stat tiles ----
-   A grid with a 1px gap over a line-colored background,
-   which draws thin dividers between the tiles. */
+/* ---- About stat boxes ----
+   1px gap over a grey background = thin divider lines between boxes */
 
 .stats {
   display: grid;
@@ -328,7 +298,7 @@ a {
   background: var(--line);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;   /* clip tile corners to the rounded border */
+  overflow: hidden;
 }
 
 .stat {
@@ -349,7 +319,7 @@ a {
 }
 
 
-/* ---- Projects: filter chips ---- */
+/* ---- project filter buttons ---- */
 
 .filters {
   display: flex;
@@ -362,7 +332,7 @@ a {
   padding: 6px 14px;
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 999px;   /* fully rounded pill */
+  border-radius: 999px;
   font-size: 13px;
   color: var(--muted);
   transition: all 0.15s;
@@ -372,7 +342,6 @@ a {
   color: var(--text);
 }
 
-/* Selected chip: solid fill (inverted colors). */
 .chip.is-active {
   background: var(--text);
   border-color: var(--text);
@@ -380,10 +349,9 @@ a {
 }
 
 
-/* ---- Projects: cards ---- */
+/* ---- project cards ---- */
 
-/* Two-column grid. align-items: start keeps each card its own height,
-   so expanding one card doesn't stretch its neighbor. */
+/* align-items: start so opening one card doesn't stretch the one next to it */
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -402,13 +370,12 @@ a {
   transition: border-color 0.2s, transform 0.2s;
 }
 
-/* Subtle lift and accent-tinted border on hover. */
 .card:hover {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
   transform: translateY(-2px);
 }
 
-/* Top row of a card: category on the left, status badge on the right. */
+/* category + status row */
 .card__meta {
   display: flex;
   justify-content: space-between;
@@ -419,7 +386,6 @@ a {
   color: var(--muted);
 }
 
-/* Status badge, e.g. "In development". */
 .badge {
   padding: 3px 9px;
   background: var(--accent-soft);
@@ -440,12 +406,11 @@ a {
   color: var(--muted);
 }
 
-/* The expandable details panel. */
 .card__more {
   padding-top: 4px;
 }
 
-/* Row of project links (GitHub, demo, etc.) inside the details panel. */
+/* for when repos go public */
 .card__links {
   display: flex;
   gap: 14px;
@@ -458,7 +423,7 @@ a {
   text-decoration: none;
 }
 
-/* "Details +" button. margin-top: auto pins it to the bottom of the card. */
+/* Details button, margin-top auto keeps it at the bottom */
 .toggle {
   display: inline-flex;
   align-items: center;
@@ -472,7 +437,7 @@ a {
   color: var(--accent);
 }
 
-/* The "+" rotates into an "×" when the panel is open. */
+/* + turns into x when open */
 .toggle__icon {
   transition: transform 0.2s;
 }
@@ -482,8 +447,7 @@ a {
 }
 
 
-/* ---- Tags ----
-   Small outlined pills for tech stacks (cards) and skills. */
+/* ---- tags (tech stack + skills) ---- */
 
 .tags {
   display: flex;
@@ -499,7 +463,7 @@ a {
   color: var(--muted);
 }
 
-/* Larger variant used in the Skills section. */
+/* bigger version for Skills */
 .tags--lg li {
   padding: 5px 11px;
   background: var(--surface);
@@ -508,8 +472,7 @@ a {
 }
 
 
-/* ---- Bullet lists ----
-   Uses a dash instead of a dot, positioned in the left padding. */
+/* ---- bullet lists, dash instead of a dot ---- */
 
 .bullets li {
   position: relative;
@@ -517,7 +480,6 @@ a {
   font-size: 15px;
 }
 
-/* Space between bullets (but not above the first one). */
 .bullets li + li {
   margin-top: 8px;
 }
@@ -530,8 +492,7 @@ a {
 }
 
 
-/* ---- Experience timeline ----
-   Dates in a fixed left column, job details on the right. */
+/* ---- experience timeline (dates left, details right) ---- */
 
 .timeline {
   display: grid;
@@ -559,7 +520,7 @@ a {
   color: var(--muted);
 }
 
-/* "Other experience" list under the timeline, set off by a dashed line. */
+/* other experience list */
 .other {
   margin-top: 44px;
   padding-top: 24px;
@@ -576,18 +537,16 @@ a {
 }
 
 
-/* ---- Skills ----
-   Two columns of skill groups. */
+/* ---- skills ---- */
 
 .skills {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 36px 32px;   /* row gap, column gap */
+  gap: 36px 32px;
 }
 
 
-/* ---- Education & certifications ----
-   Education gets a slightly wider column than certifications. */
+/* ---- education / certs ---- */
 
 .edu {
   display: grid;
@@ -603,7 +562,6 @@ a {
   margin-top: 16px;
 }
 
-/* Certification rows: name on the left, status on the right, divider below. */
 .certs li {
   display: flex;
   justify-content: space-between;
@@ -618,7 +576,7 @@ a {
 }
 
 
-/* ---- Contact ---- */
+/* ---- contact ---- */
 
 .contact {
   display: flex;
@@ -630,10 +588,9 @@ a {
 
 .contact__email {
   font: 500 clamp(18px, 3vw, 24px) var(--font-mono);
-  word-break: break-all;   /* lets a long email wrap on small screens */
+  word-break: break-all;   /* so it can wrap on phones */
 }
 
-/* Solid button (used for "Copy email"). */
 .btn {
   padding: 8px 16px;
   background: var(--text);
@@ -648,11 +605,10 @@ a {
 }
 
 
-/* --------------------------------------------------------------------------
-   5. MOTION
-   Sections start faded and slightly lower; main.js adds .is-visible
-   when they scroll into view, which animates them into place.
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Motion
+   main.js adds .is-visible when a section scrolls into view.
+   ------------------------------------------------------------------ */
 
 .reveal {
   opacity: 0;
@@ -665,8 +621,7 @@ a {
   transform: none;
 }
 
-/* Respect visitors who've asked their OS to reduce motion:
-   no smooth scrolling, no fade-in, no card lift. */
+/* turn animations off if the OS has reduce motion on */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -684,11 +639,10 @@ a {
 }
 
 
-/* --------------------------------------------------------------------------
-   6. RESPONSIVE
-   Below 720px wide (phones, small tablets), collapse grids to fewer
-   columns and stack the timeline dates above each job.
-   -------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------
+   Responsive
+   Phones / small tablets: fewer columns, dates stacked above jobs.
+   ------------------------------------------------------------------ */
 
 @media (max-width: 720px) {
   .stats {
