@@ -6,6 +6,7 @@ Newest first. Add a line here whenever something changes on the site.
 ## Oct 10, 2026
 
 - Moved the site to dominiccaulfield-duverger.dev
+- Rewrote the README to match the devcontainer template's layout
 
 
 ## Oct 9, 2026
