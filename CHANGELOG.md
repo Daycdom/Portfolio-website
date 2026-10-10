@@ -5,7 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 10, 2026
 
-- Projects can have sub-cards (`parts`) shown in Details; a card with sub-cards spans the full row while open
+- Projects can have sub-cards (`parts`) shown in Details and listed on the closed card; a card with sub-cards spans the full row while open
 - Infrastructure projects combined into one Self-Hosted Homelab card using sub-cards
 - Moved to dominiccaulfield-duverger.dev
 - Content refreshed from the new resume

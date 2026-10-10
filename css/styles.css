@@ -510,6 +510,13 @@ a.toggle:hover span:first-child {
   transform: none;
 }
 
+/* "Includes: ..." line on a closed card that has sub-cards.
+   Same small muted mono text as the category row so it blends in */
+.card__includes {
+  font: 400 12px var(--font-mono);
+  color: var(--muted);
+}
+
 /* sub-cards inside a project's Details (e.g. the homelab's pieces) */
 .card__parts {
   display: grid;

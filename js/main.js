@@ -140,6 +140,9 @@
               <p class="card__desc">${esc(p.description)}</p>
               <ul class="tags">${list(p.stack, (s) => `<li>${esc(s)}</li>`)}</ul>
 
+              ${parts.length ? `
+                <p class="card__includes">Includes: ${parts.map((part) => esc(part.name)).join(" · ")}</p>` : ""}
+
               ${hasMore ? `
                 <div class="card__more" id="${id}" hidden>
                   ${p.details.length ? `<ul class="bullets">${list(p.details, (d) => `<li>${esc(d)}</li>`)}</ul>` : ""}
