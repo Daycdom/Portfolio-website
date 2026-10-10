@@ -140,7 +140,7 @@ const PORTFOLIO = {
       status: "In development",
       stack: ["Python", "OCR", "API Integration", "LLMs"],
       description:
-        "Privacy-focused desktop assistant that reads the screen via OCR for Q&A, summaries, and coding help.",
+        "Privacy-focused AI desktop assistant that reads the screen via OCR for real-time Q&A, summaries, and coding help.",
       details: [
         "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
         "Supports self-hosted LLMs or your own API keys, for full control over where data goes.",
@@ -171,7 +171,7 @@ const PORTFOLIO = {
       status: "25+ systems",
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
       description:
-        "Built and advised on 25+ custom PCs, from component selection through setup.",
+        "Built and advised on 25+ custom PCs, from component selection through OS setup and troubleshooting.",
       details: [
         "Selected components to fit each build's budget and workload.",
         "Handled assembly, OS setup, drivers, and troubleshooting through to a working system.",
