@@ -131,17 +131,54 @@ const PORTFOLIO = {
     },
 
     {
-      name: "Self-Hosted Homelab",
+      name: "Proxmox Homelab",
       category: "Infrastructure",
       status: "Running",
-      stack: ["Proxmox", "Docker", "Tailscale", "Linux", "iptables"],
+      stack: ["Proxmox", "Docker", "LXC", "Linux"],
       description:
-        "Proxmox host running 5+ services, including game servers, Pi-hole, and Nginx Proxy Manager.",
+        "Proxmox host running 5+ services at once, including game servers, Pi-hole, and Nginx Proxy Manager.",
       details: [
-        "Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that keeps the home IP hidden.",
-        "Home network built with subnetting, firewalls, and VPN access.",
-        "Also hosts this site.",
+        "Also hosts this site, in its own Debian container.",
       ],
+      links: [],
+      // repo: "",
+    },
+
+    {
+      name: "VPS Relay",
+      category: "Infrastructure",
+      status: "Running",
+      stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy"],
+      description:
+        "Public traffic goes to a VPS and is relayed home over Tailscale, so the home IP stays hidden.",
+      details: [
+        "iptables NAT forwards game server ports through the tunnel.",
+        "Caddy on the VPS handles HTTPS for this site and proxies it to the homelab.",
+      ],
+      links: [],
+      // repo: "",
+    },
+
+    {
+      name: "Home Network",
+      category: "Infrastructure",
+      status: "Lab",
+      stack: ["Subnetting", "Firewalls", "VPN"],
+      description:
+        "Designed a multi-device home network with custom subnetting, firewall rules, and VPN access.",
+      details: [],
+      links: [],
+      // repo: "",
+    },
+
+    {
+      name: "Game Server Hosting",
+      category: "Infrastructure",
+      status: "Running",
+      stack: ["Linux", "iptables", "Monitoring"],
+      description:
+        "Dedicated game servers, reachable through the VPS relay instead of open home ports.",
+      details: [],
       links: [],
       // repo: "",
     },
@@ -176,12 +213,23 @@ const PORTFOLIO = {
         "Trained 2 technicians into lead roles, and track IT assets across projects.",
       ],
     },
+
+    {
+      role: "Sales Associate",
+      company: "Best Buy",
+      location: "Dartmouth, MA",
+      start: "Oct 2020",
+      end: "Feb 2021",
+      points: [
+        "Advised customers on consumer electronics and technology products.",
+        "Supported inventory management for tech equipment in a high-volume retail setting.",
+      ],
+    },
   ],
 
   // smaller stuff listed under the timeline ([] hides it)
   otherExperience: [
     "Woodworking Assistant, Flower Window Boxes (2025)",
-    "Associate, Best Buy (2020–2021)",
     "Delivery Driver, DoorDash (2020–2025)",
   ],
 
