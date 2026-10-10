@@ -93,8 +93,9 @@ const PORTFOLIO = {
       description:
         "Privacy-focused desktop assistant that reads the screen via OCR for Q&A, summaries, and coding help.",
       details: [
-        "Supports self-hosted LLMs or your own API keys, so you control where your data goes.",
-        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
+        "Captures what's on screen with OCR and hands it to an LLM with the user's question.",
+        "Runs on a self-hosted LLM or your own API keys, so you control where your data goes.",
+        "ML-based PII redaction in development, to strip sensitive data before anything leaves the machine.",
       ],
       links: [],
       // repo: "",
@@ -104,13 +105,13 @@ const PORTFOLIO = {
       name: "Portfolio Website",
       category: "Software",
       status: "Live",
-      stack: ["HTML", "CSS", "JavaScript", "Caddy", "Tailscale"],
+      stack: ["HTML", "CSS", "JavaScript", "Caddy"],
       description:
-        "This site. Data-driven and self-hosted on my home server.",
+        "This site. Data-driven and self-hosted on my homelab.",
       details: [
-        "All content lives in one data file, so the page is built from it instead of hand-edited HTML.",
-        "Public repos load live from the GitHub API and can be attached to project cards.",
-        "Served from a Debian container at home, routed over Tailscale to a VPS that handles the domain and HTTPS.",
+        "All content lives in one data file, and the page is built from it on load.",
+        "Public repos come in live from the GitHub API and can be attached to project cards.",
+        "Deploys with a git pull on the server, no build step or restart.",
       ],
       links: [],
       repo: "Portfolio-website",
@@ -124,7 +125,8 @@ const PORTFOLIO = {
       description:
         "Farming and town-building RPG built in Godot with C++.",
       details: [
-        "Entity systems and game state management.",
+        "Entity systems for the player, NPCs, crops, and buildings.",
+        "Game state management for saving, loading, and day-to-day progression.",
       ],
       links: [],
       // repo: "",
@@ -136,9 +138,11 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Proxmox", "Docker", "LXC", "Linux"],
       description:
-        "Proxmox host running 5+ services at once, including game servers, Pi-hole, and Nginx Proxy Manager.",
+        "A Proxmox host running 5+ services side by side in containers.",
       details: [
-        "Also hosts this site, in its own Debian container.",
+        "Services include game servers, Pi-hole for network-wide ad blocking, and Nginx Proxy Manager.",
+        "Each service gets its own LXC container or Docker stack, so one can be rebuilt without touching the rest.",
+        "Also hosts this site in its own Debian container.",
       ],
       links: [],
       // repo: "",
@@ -150,10 +154,11 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy"],
       description:
-        "Public traffic goes to a VPS and is relayed home over Tailscale, so the home IP stays hidden.",
+        "Public traffic hits a VPS and is relayed home over Tailscale, so the home IP is never exposed.",
       details: [
-        "iptables NAT forwards game server ports through the tunnel.",
-        "Caddy on the VPS handles HTTPS for this site and proxies it to the homelab.",
+        "Domains point at the VPS through Cloudflare DNS, not at the home connection.",
+        "iptables NAT forwards game server ports through the tunnel; everything else is dropped by default.",
+        "Caddy handles HTTPS certificates for this site and proxies it to the homelab.",
       ],
       links: [],
       // repo: "",
@@ -162,11 +167,14 @@ const PORTFOLIO = {
     {
       name: "Home Network",
       category: "Infrastructure",
-      status: "Lab",
+      status: "Running",
       stack: ["Subnetting", "Firewalls", "VPN"],
       description:
-        "Designed a multi-device home network with custom subnetting, firewall rules, and VPN access.",
-      details: [],
+        "Home network built with custom subnetting, firewall rules, and VPN access.",
+      details: [
+        "A Tailscale subnet router gives remote access to the LAN without opening ports.",
+        "Services sit on static addresses so routing and firewall rules stay predictable.",
+      ],
       links: [],
       // repo: "",
     },
@@ -175,10 +183,13 @@ const PORTFOLIO = {
       name: "Game Server Hosting",
       category: "Infrastructure",
       status: "Running",
-      stack: ["Linux", "iptables", "Monitoring"],
+      stack: ["Linux", "iptables", "Tailscale"],
       description:
         "Dedicated game servers, reachable through the VPS relay instead of open home ports.",
-      details: [],
+      details: [
+        "Currently hosting Minecraft and Palworld.",
+        "Each game's port is forwarded individually at the VPS, so only what's needed is reachable.",
+      ],
       links: [],
       // repo: "",
     },
@@ -190,7 +201,10 @@ const PORTFOLIO = {
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
       description:
         "Built and advised on 25+ custom PCs, from component selection through setup.",
-      details: [],
+      details: [
+        "Matched parts to each person's budget and use, from gaming rigs to workstations.",
+        "Handled assembly, OS install, drivers, and troubleshooting through to a working system.",
+      ],
       links: [],
       // repo: "",
     },
