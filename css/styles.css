@@ -377,12 +377,12 @@ a {
 
 /* ---- project cards ---- */
 
-/* align-items: start so opening one card doesn't stretch the one next to it */
+/* cards in a row stretch to the same height; the Details button has
+   margin-top: auto so it lines up along the bottom of every card */
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  align-items: start;
 }
 
 .card {
@@ -533,6 +533,14 @@ a.toggle:hover span:first-child {
 .card__title--sm {
   margin: 0;
   font-size: 16px;
+}
+
+/* while every project card is closed, all rows are the same height,
+   so every card is the same size. Once one opens, rows size to their
+   own content again so the others don't all grow with it */
+#project-cards:not(:has(button.toggle[aria-expanded="true"])),
+#repo-cards {
+  grid-auto-rows: 1fr;
 }
 
 /* a project with sub-cards takes the full row while it's open,
