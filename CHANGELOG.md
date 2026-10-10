@@ -9,7 +9,6 @@ Newest first. Add a line here whenever something changes on the site.
 - Every project card now has a one-line description and 2-3 detail points
 - Combined the infrastructure projects into one Self-Hosted Homelab card, with sub-cards for the Proxmox host, networking & VPS relay, and game servers
 - Moved the site to dominiccaulfield-duverger.dev
-- Rewrote the README to match the other repo layouts
 
 
 ## Oct 9, 2026
