@@ -82,7 +82,7 @@ const PORTFOLIO = {
   // links is for anything extra, e.g. [{ label: "Demo", url: "https://..." }]
   //
   // Once a project's repo is public, add its repo name:
-  //   repo: "Portfolio-website",
+  //   repo: "my-repo-name",
   // That puts a GitHub link in the card's Details and takes the repo out
   // of the Public repos section so it isn't listed twice.
   projects: [
@@ -192,22 +192,6 @@ const PORTFOLIO = {
       ],
       links: [],
       // repo: "",
-    },
-
-    {
-      name: "Portfolio Website",
-      category: "Software",
-      status: "Live",
-      stack: ["HTML", "CSS", "JavaScript", "Caddy"],
-      description:
-        "This site. Data-driven and self-hosted on my homelab.",
-      details: [
-        "Builds every section from a single data file, so content updates never touch the layout code.",
-        "Pulls public repos live from the GitHub API and attaches them to matching project cards.",
-        "Deploys with a git pull on the server, behind the same VPS relay as the rest of the homelab.",
-      ],
-      links: [],
-      repo: "Portfolio-website",
     },
   ],
 

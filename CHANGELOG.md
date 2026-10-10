@@ -5,6 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 10, 2026
 
+- Removed the Portfolio Website project card; its repo shows under Public repos instead
 - Moved the site to dominiccaulfield-duverger.dev
 - Rewrote the README to match the devcontainer template's layout
 - Updated content from the new resume: summary, stats, EbryIT points, skills, and split the homelab into Proxmox Homelab, VPS Relay, Home Network and Game Server Hosting cards
