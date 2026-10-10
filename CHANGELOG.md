@@ -5,20 +5,17 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 10, 2026
 
-- Updated content from the new resume: title, summary, stats, EbryIT points, skills, and project wording and order
-- Every project card now has a one-line description and 2-3 detail points
-- Combined the infrastructure projects into one Self-Hosted Homelab card, with sub-cards for the Proxmox host, networking & VPS relay, and game servers
-- Moved the site to dominiccaulfield-duverger.dev
+- Projects can have sub-cards (`parts`) shown in Details; a card with sub-cards spans the full row while open
+- Infrastructure projects combined into one Self-Hosted Homelab card using sub-cards
+- Moved to dominiccaulfield-duverger.dev
+- Content refreshed from the new resume
 
 
 ## Oct 9, 2026
 
-- Every section can be opened/closed from its heading
-- Added a Public repos subsection at the bottom of Projects, pulled live from GitHub, same card style as Projects, closed by default
-- Coursework repos (names starting with "CS") are hidden from Public repos
-- Projects can point at a repo (`repo: "name"`), which shows that repo's card in Details
-- Added GitHub and LinkedIn links under the tagline and in Contact
-- Site is live at friendzone.dev
-- Cleaned up comments, added name/date headers to every file, trimmed the README
-- Took out location and the "built with" footer line, switched to my gmail
-- First version: about, projects, experience, skills, education, contact
+- Sections collapse from their headings; `collapsed: true` in `sections` starts one closed
+- Public repos load live from the GitHub API into a collapsed subsection under Projects, skipping forks, archived repos, `exclude` names and `excludePrefixes` (currently `CS`)
+- Projects can attach a repo with `repo: "name"`; its card moves into that project's Details, or shows a private note if the repo isn't public
+- Social links rendered from `profile.socials` in the hero and Contact
+- Deployed: Caddy serves the files from a Debian container; a VPS handles HTTPS and proxies to it over Tailscale
+- First version: page rendered from `data.js` through `RENDERERS` in `main.js`, with light/dark toggle, project filters, copy-email button and scroll-highlighted nav
