@@ -29,12 +29,13 @@ const PORTFOLIO = {
     ],
 
     tagline:
-      "Leading enterprise device deployments, and building software and a homelab on the side.",
+      "Leading enterprise IT deployments at scale, and building software and self-hosted infrastructure on the side.",
 
     summary:
       "IT Technician and Software Developer with over a year of experience leading enterprise " +
-      "deployments. I pair hands-on systems and hardware work with software projects in Python, " +
-      "C++, and Linux, backed by an A.S. in Computer Science.",
+      "deployments for Fortune 500, financial, and government clients, running teams of up to 20 " +
+      "across 40 projects and 30,000+ devices. Outside of work I build software in Python and C++ " +
+      "and run a self-hosted Proxmox homelab, backed by an A.S. in Computer Science.",
 
     // the stat boxes in About (4 fits on one row)
     highlights: [
