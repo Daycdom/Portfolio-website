@@ -3,6 +3,11 @@
 Newest first. Add a line here whenever something changes on the site.
 
 
+## Oct 10, 2026
+
+- Moved the site to dominiccaulfield-duverger.dev
+
+
 ## Oct 9, 2026
 
 - Reworded the Portfolio Website card description
