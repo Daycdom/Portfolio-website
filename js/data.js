@@ -16,7 +16,7 @@ const PORTFOLIO = {
   // Used in the header, About, Contact and the nav initials.
   profile: {
     name: "Dominic Caulfield-Duverger",
-    title: "IT & Software Professional",
+    title: "IT Technician & Software Developer",
 
     // location: "City, ST",   // uncomment to show it next to the title
 
@@ -29,20 +29,19 @@ const PORTFOLIO = {
     ],
 
     tagline:
-      "Configuring, networking, and troubleshooting systems at scale, and building software on the side.",
+      "Leading enterprise device deployments, and building software and a homelab on the side.",
 
     summary:
-      "Entry-level IT and software professional with hands-on experience in device configuration, " +
-      "networking, and troubleshooting. Background in computer science with programming experience " +
-      "in Python, C++, and Java. Adept at leading technical projects, training others, and delivering " +
-      "results under deadline.",
+      "IT Technician and Software Developer with over a year of experience leading enterprise " +
+      "deployments. I pair hands-on systems and hardware work with software projects in Python, " +
+      "C++, and Linux, backed by an A.S. in Computer Science.",
 
     // the stat boxes in About (4 fits on one row)
     highlights: [
-      { value: "25+",  label: "Custom PCs built" },
-      { value: "A.S.", label: "Computer Science" },
-      { value: "8",    label: "Programming languages" },
-      { value: "Lead", label: "Configuration Technician" },
+      { value: "30,000+", label: "Devices processed" },
+      { value: "40",      label: "Projects led" },
+      { value: "25+",     label: "Custom PCs built" },
+      { value: "A.S.",    label: "Computer Science" },
     ],
   },
 
@@ -92,11 +91,10 @@ const PORTFOLIO = {
       status: "In development",
       stack: ["Python", "OCR", "API Integration", "LLMs"],
       description:
-        "Privacy-focused AI desktop assistant that reads what's on screen and helps in real time.",
+        "Privacy-focused desktop assistant that reads the screen via OCR for Q&A, summaries, and coding help.",
       details: [
-        "Uses OCR to capture screen content for real-time Q&A, summarization, and coding help.",
-        "Supports self-hosted LLM deployment or user-supplied API keys for full data control.",
-        "ML-based PII redaction layer in development to censor sensitive data before any external API call.",
+        "Supports self-hosted LLMs or your own API keys, so you control where your data goes.",
+        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
       ],
       links: [],
       // repo: "",
@@ -122,36 +120,28 @@ const PORTFOLIO = {
       name: "2D Farming & Town-Builder RPG",
       category: "Game Dev",
       status: "In development",
-      stack: ["C++", "Godot Engine", "Pixel Art"],
+      stack: ["C++", "Godot Engine"],
       description:
-        "Pixel-art farming and town-building RPG built in Godot with C++.",
+        "Farming and town-building RPG built in Godot with C++.",
       details: [
-        "Manages game state, entity systems, and rendering across multiple subsystems.",
+        "Entity systems and game state management.",
       ],
       links: [],
       // repo: "",
     },
 
     {
-      name: "Home Network",
+      name: "Self-Hosted Homelab",
       category: "Infrastructure",
-      status: "Lab",
-      stack: ["Subnetting", "Firewalls", "VPN"],
+      status: "Running",
+      stack: ["Proxmox", "Docker", "Tailscale", "Linux", "iptables"],
       description:
-        "Designed a multi-device home network with custom subnetting, firewall rules, and VPN access.",
-      details: [],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "Game Server Hosting",
-      category: "Infrastructure",
-      status: "Lab",
-      stack: ["Linux", "Port Forwarding", "Monitoring"],
-      description:
-        "Administered dedicated game servers with port forwarding, firewall configuration, and performance monitoring.",
-      details: [],
+        "Proxmox host running 5+ services, including game servers, Pi-hole, and Nginx Proxy Manager.",
+      details: [
+        "Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that keeps the home IP hidden.",
+        "Home network built with subnetting, firewalls, and VPN access.",
+        "Also hosts this site.",
+      ],
       links: [],
       // repo: "",
     },
@@ -162,7 +152,7 @@ const PORTFOLIO = {
       status: "25+ systems",
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
       description:
-        "Assembled and configured 25+ custom systems, from component selection through OS setup and troubleshooting.",
+        "Built and advised on 25+ custom PCs, from component selection through setup.",
       details: [],
       links: [],
       // repo: "",
@@ -180,30 +170,18 @@ const PORTFOLIO = {
       start: "Jul 2025",
       end: "Present",
       points: [
-        "Lead multi-tech configuration projects, coordinating task assignments and ensuring on-time delivery against client deadlines.",
-        "Train and mentor junior technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting procedures.",
-        "Configure, image, and deploy laptops and desktops for enterprise clients at scale.",
-        "Troubleshoot software, hardware, and network connectivity issues; serve as escalation point for complex problems.",
-        "Track IT assets and maintain inventory accuracy across concurrent projects.",
-      ],
-    },
-
-    {
-      role: "Sales Associate",
-      company: "Best Buy",
-      location: "Dartmouth, MA",
-      start: "Oct 2020",
-      end: "Feb 2021",
-      points: [
-        "Advised customers on consumer electronics and technology products.",
-        "Supported inventory management for tech equipment in a high-volume retail setting.",
+        "Lead teams of up to 20 on 40 projects, 10+ of them at 1,000-15,000 devices, for Fortune 500, financial, and government clients.",
+        "Processed 30,000+ devices, from routine imaging and deployment to advanced hardware and firmware work.",
+        "Serve as the escalation point for hardware, software, and network issues across the deployment team.",
+        "Trained 2 technicians into lead roles, and track IT assets across projects.",
       ],
     },
   ],
 
   // smaller stuff listed under the timeline ([] hides it)
   otherExperience: [
-    "Seasonal Production / Warehousing, Flower Window Boxes (Jun–Jul 2025)",
+    "Woodworking Assistant, Flower Window Boxes (2025)",
+    "Associate, Best Buy (2020–2021)",
     "Delivery Driver, DoorDash (2020–2025)",
   ],
 
@@ -212,19 +190,23 @@ const PORTFOLIO = {
   skills: [
     {
       group: "Languages",
-      items: ["Python", "C++", "Java", "C", "C#", "JavaScript", "HTML", "SQL"],
+      items: ["Python", "C++", "Java", "C", "C#", "JavaScript", "HTML", "CSS", "SQL"],
     },
     {
-      group: "Networking & Security",
-      items: ["TCP/IP", "DHCP", "DNS", "VPN", "Firewalls", "System Hardening"],
+      group: "Systems",
+      items: ["Windows 10/11", "Linux (CLI)", "Microsoft 365", "Active Directory", "BIOS/OS Imaging", "Server Administration"],
     },
     {
-      group: "Systems & Tools",
-      items: ["Windows 10/11", "Linux", "BIOS/OS Imaging", "Microsoft 365", "Active Directory"],
+      group: "Networking",
+      items: ["TCP/IP", "DHCP", "DNS", "VPN", "Firewalls", "System Hardening", "Tailscale", "iptables", "Cable Routing & Termination"],
+    },
+    {
+      group: "Tools",
+      items: ["Git", "GitHub", "Docker", "Shell Scripting", "SSH", "Proxmox", "LXC"],
     },
     {
       group: "Hardware",
-      items: ["PC Builds", "Server Setup", "Device Configuration", "Device Enrollment"],
+      items: ["PC Builds", "Server Setup", "Device Configuration & Enrollment", "Troubleshooting"],
     },
   ],
 

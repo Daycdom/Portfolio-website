@@ -7,6 +7,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 - Moved the site to dominiccaulfield-duverger.dev
 - Rewrote the README to match the devcontainer template's layout
+- Updated content from the new resume: summary, stats, EbryIT points, skills, merged home network and game servers into one Homelab project, moved Best Buy to other experience
 
 
 ## Oct 9, 2026
