@@ -85,67 +85,53 @@ const PORTFOLIO = {
   //   repo: "my-repo-name",
   // That puts a GitHub link in the card's Details and takes the repo out
   // of the Public repos section so it isn't listed twice.
+  //
+  // A bigger project can have parts: [...] (name, description, stack,
+  // details). Each one shows as its own small card inside Details.
   projects: [
     {
-      name: "Proxmox Homelab",
+      name: "Self-Hosted Homelab",
       category: "Infrastructure",
       status: "Running",
-      stack: ["Proxmox", "Docker", "LXC", "Linux"],
+      stack: ["Proxmox", "Docker", "Tailscale", "Linux"],
       description:
-        "Proxmox host running 5+ concurrent services, including game servers, Pi-hole, and Nginx Proxy Manager.",
-      details: [
-        "Isolates services in their own containers so each can be updated or rebuilt independently.",
-        "Runs network-wide DNS filtering with Pi-hole and reverse proxying with Nginx Proxy Manager.",
-        "Hosts this site in a dedicated Debian container.",
-      ],
+        "Proxmox host running 5+ concurrent services, reached through a VPS relay that hides the home IP.",
+      details: [],
       links: [],
       // repo: "",
-    },
 
-    {
-      name: "VPS Relay",
-      category: "Infrastructure",
-      status: "Running",
-      stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy"],
-      description:
-        "Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that hides the home IP.",
-      details: [
-        "Forwards game server ports through the tunnel with iptables NAT, with all other inbound traffic dropped.",
-        "Terminates HTTPS with Caddy and proxies web traffic to the homelab.",
-        "Keeps the home network off the public internet, with no ports opened on the home router.",
+      parts: [
+        {
+          name: "Proxmox Host",
+          description: "Runs 5+ concurrent services, including game servers, Pi-hole, and Nginx Proxy Manager.",
+          stack: ["Proxmox", "Docker", "LXC"],
+          details: [
+            "Isolates services in their own containers so each can be updated or rebuilt independently.",
+            "Runs network-wide DNS filtering with Pi-hole and reverse proxying with Nginx Proxy Manager.",
+            "Hosts this site in a dedicated Debian container.",
+          ],
+        },
+        {
+          name: "Networking & VPS Relay",
+          description: "Home network with subnetting, firewalls, and VPN access, exposed only through Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that hides the home IP.",
+          stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy", "Subnetting", "Firewalls"],
+          details: [
+            "Routes public traffic to a VPS and relays it home over Tailscale, with no ports opened on the home router.",
+            "Forwards game server ports through the tunnel with iptables NAT, with all other inbound traffic dropped.",
+            "Terminates HTTPS with Caddy on the VPS and proxies web traffic to the homelab.",
+            "Provides remote access to the LAN through a Tailscale subnet router, with firewall rules separating home devices from public-facing services.",
+          ],
+        },
+        {
+          name: "Game Servers",
+          description: "Dedicated game servers administered with port forwarding, firewall configuration, and performance monitoring.",
+          stack: ["Linux", "iptables", "Monitoring"],
+          details: [
+            "Hosts Minecraft and Palworld servers.",
+            "Exposes only each game's port, forwarded through the VPS relay instead of open home ports.",
+          ],
+        },
       ],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "Home Network",
-      category: "Infrastructure",
-      status: "Running",
-      stack: ["Subnetting", "Firewalls", "VPN"],
-      description:
-        "Built a multi-device home network with subnetting, firewalls, and VPN access.",
-      details: [
-        "Provides remote access to the LAN through a Tailscale subnet router.",
-        "Separates home devices from public-facing services through firewall rules.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "Game Server Hosting",
-      category: "Infrastructure",
-      status: "Running",
-      stack: ["Linux", "iptables", "Tailscale", "Monitoring"],
-      description:
-        "Dedicated game servers administered with port forwarding, firewall configuration, and performance monitoring.",
-      details: [
-        "Hosts Minecraft and Palworld servers.",
-        "Exposes only each game's port, forwarded through the VPS relay instead of open home ports.",
-      ],
-      links: [],
-      // repo: "",
     },
 
     {

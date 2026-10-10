@@ -125,7 +125,8 @@
         <div class="cards" id="project-cards">
           ${list(projects, (p) => {
             // skip the Details button if there's nothing extra to show
-            const hasMore = p.details.length || p.links.length || p.repo;
+            const parts = p.parts || [];
+            const hasMore = p.details.length || p.links.length || p.repo || parts.length;
             const id = `proj-${slug(p.name)}`;
 
             return `
@@ -142,6 +143,18 @@
               ${hasMore ? `
                 <div class="card__more" id="${id}" hidden>
                   ${p.details.length ? `<ul class="bullets">${list(p.details, (d) => `<li>${esc(d)}</li>`)}</ul>` : ""}
+
+                  ${parts.length ? `
+                    <div class="card__parts">
+                      ${list(parts, (part) => `
+                        <div class="card card--nested">
+                          <h4 class="card__title card__title--sm">${esc(part.name)}</h4>
+                          <p class="card__desc">${esc(part.description)}</p>
+                          <ul class="tags">${list(part.stack, (s) => `<li>${esc(s)}</li>`)}</ul>
+                          ${part.details?.length ? `<ul class="bullets">${list(part.details, (d) => `<li>${esc(d)}</li>`)}</ul>` : ""}
+                        </div>`)}
+                    </div>` : ""}
+
                   ${p.links.length ? `<div class="card__links">${list(p.links, (l) =>
                     `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`)}</div>` : ""}
 

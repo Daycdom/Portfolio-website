@@ -5,6 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Oct 10, 2026
 
+- Combined the infrastructure cards into one Self-Hosted Homelab project, with sub-cards for the Proxmox host, networking & VPS relay, and game servers
 - Removed the Portfolio Website project card; its repo shows under Public repos instead
 - Moved the site to dominiccaulfield-duverger.dev
 - Rewrote the README to match the devcontainer template's layout

@@ -510,6 +510,30 @@ a.toggle:hover span:first-child {
   transform: none;
 }
 
+/* sub-cards inside a project's Details (e.g. the homelab's pieces) */
+.card__parts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.card__parts .card--nested {
+  gap: 10px;
+  margin-top: 0;
+}
+
+.card__title--sm {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* a project with sub-cards takes the full row while it's open,
+   so the sub-cards have room to sit side by side */
+#project-cards > .card:has(.card__parts):has(> button.toggle[aria-expanded="true"]) {
+  grid-column: 1 / -1;
+}
+
 /* shown in place of a repo card while the repo is private */
 .repo-private {
   margin-top: 14px;
@@ -750,6 +774,7 @@ a.toggle:hover span:first-child {
   }
 
   .cards,
+  .card__parts,
   .skills,
   .edu {
     grid-template-columns: 1fr;
