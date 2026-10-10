@@ -33,9 +33,9 @@ const PORTFOLIO = {
 
     summary:
       "IT Technician and Software Developer with over a year of experience leading enterprise " +
-      "deployments for Fortune 500, financial, and government clients, running teams of up to 20 " +
-      "across 40 projects and 30,000+ devices. Outside of work I build software in Python and C++ " +
-      "and run a self-hosted Proxmox homelab, backed by an A.S. in Computer Science.",
+      "deployments for Fortune 500, financial, and government clients. I pair hands-on systems " +
+      "and hardware work with software projects in Python, C++, and Linux, backed by an A.S. in " +
+      "Computer Science.",
 
     // the stat boxes in About (4 fits on one row)
     highlights: [
@@ -87,53 +87,6 @@ const PORTFOLIO = {
   // of the Public repos section so it isn't listed twice.
   projects: [
     {
-      name: "AI Screen Copilot",
-      category: "Software",
-      status: "In development",
-      stack: ["Python", "OCR", "API Integration", "LLMs"],
-      description:
-        "Privacy-focused AI desktop assistant that reads the screen in real time for Q&A, summaries, and coding help.",
-      details: [
-        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
-        "Supports self-hosted LLMs or user-supplied API keys for full control over data.",
-        "ML-based PII redaction layer in development to censor sensitive data before any external API call.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "Portfolio Website",
-      category: "Software",
-      status: "Live",
-      stack: ["HTML", "CSS", "JavaScript", "Caddy"],
-      description:
-        "This site. Data-driven and self-hosted on my homelab.",
-      details: [
-        "Builds every section from a single data file, so content updates never touch the layout code.",
-        "Pulls public repos live from the GitHub API and attaches them to matching project cards.",
-        "Deploys with a git pull on the server, behind the same VPS relay as the rest of the homelab.",
-      ],
-      links: [],
-      repo: "Portfolio-website",
-    },
-
-    {
-      name: "2D Farming & Town-Builder RPG",
-      category: "Game Dev",
-      status: "In development",
-      stack: ["C++", "Godot Engine", "Pixel Art"],
-      description:
-        "Pixel-art farming and town-building RPG built in Godot with C++.",
-      details: [
-        "Implements entity systems and game state management.",
-        "Handles rendering across multiple subsystems.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
-    {
       name: "Proxmox Homelab",
       category: "Infrastructure",
       status: "Running",
@@ -155,7 +108,7 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy"],
       description:
-        "Cloudflare DNS and a VPS relay that route public traffic home over Tailscale, keeping the home IP hidden.",
+        "Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that hides the home IP.",
       details: [
         "Forwards game server ports through the tunnel with iptables NAT, with all other inbound traffic dropped.",
         "Terminates HTTPS with Caddy and proxies web traffic to the homelab.",
@@ -171,7 +124,7 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Subnetting", "Firewalls", "VPN"],
       description:
-        "Multi-device home network designed with custom subnetting, firewall rules, and VPN access.",
+        "Built a multi-device home network with subnetting, firewalls, and VPN access.",
       details: [
         "Provides remote access to the LAN through a Tailscale subnet router.",
         "Separates home devices from public-facing services through firewall rules.",
@@ -196,18 +149,65 @@ const PORTFOLIO = {
     },
 
     {
+      name: "AI Screen Copilot",
+      category: "Software",
+      status: "In development",
+      stack: ["Python", "OCR", "API Integration", "LLMs"],
+      description:
+        "Privacy-focused desktop assistant that reads the screen via OCR for Q&A, summaries, and coding help.",
+      details: [
+        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
+        "Supports self-hosted LLMs or your own API keys, for full control over where data goes.",
+        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
+      ],
+      links: [],
+      // repo: "",
+    },
+
+    {
+      name: "2D Farming & Town-Builder RPG",
+      category: "Game Dev",
+      status: "In development",
+      stack: ["C++", "Godot Engine", "Pixel Art"],
+      description:
+        "Pixel-art farming and town-building RPG with entity systems and game state management.",
+      details: [
+        "Built in the Godot Engine with C++.",
+        "Manages game state, entity systems, and rendering across multiple subsystems.",
+      ],
+      links: [],
+      // repo: "",
+    },
+
+    {
       name: "PC Builds",
       category: "Hardware",
       status: "25+ systems",
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
       description:
-        "Built and advised on 25+ custom PCs, from component selection through OS setup and troubleshooting.",
+        "Built and advised on 25+ custom PCs, from component selection through setup.",
       details: [
         "Selected components to fit each build's budget and workload.",
-        "Handled assembly, OS installation, drivers, and troubleshooting through to a working system.",
+        "Handled assembly, OS setup, drivers, and troubleshooting through to a working system.",
       ],
       links: [],
       // repo: "",
+    },
+
+    {
+      name: "Portfolio Website",
+      category: "Software",
+      status: "Live",
+      stack: ["HTML", "CSS", "JavaScript", "Caddy"],
+      description:
+        "This site. Data-driven and self-hosted on my homelab.",
+      details: [
+        "Builds every section from a single data file, so content updates never touch the layout code.",
+        "Pulls public repos live from the GitHub API and attaches them to matching project cards.",
+        "Deploys with a git pull on the server, behind the same VPS relay as the rest of the homelab.",
+      ],
+      links: [],
+      repo: "Portfolio-website",
     },
   ],
 
