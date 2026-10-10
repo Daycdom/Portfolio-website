@@ -113,7 +113,7 @@ const PORTFOLIO = {
         },
         {
           name: "Networking & VPS Relay",
-          description: "Home network with subnetting, firewalls, and VPN access, exposed only through Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that hides the home IP.",
+          description: "Home network with subnetting, firewalls, and VPN access, reachable from outside only through Cloudflare DNS and a VPS relay (Tailscale, iptables NAT) that hides the home IP.",
           stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy", "Subnetting", "Firewalls"],
           details: [
             "Routes public traffic to a VPS and relays it home over Tailscale, with no ports opened on the home router.",
@@ -124,7 +124,7 @@ const PORTFOLIO = {
         },
         {
           name: "Game Servers",
-          description: "Dedicated game servers administered with port forwarding, firewall configuration, and performance monitoring.",
+          description: "Dedicated game servers, administered with port forwarding, firewall configuration, and performance monitoring.",
           stack: ["Linux", "iptables", "Monitoring"],
           details: [
             "Hosts Minecraft and Palworld servers.",
@@ -143,7 +143,7 @@ const PORTFOLIO = {
         "Privacy-focused AI desktop assistant that reads the screen via OCR for real-time Q&A, summaries, and coding help.",
       details: [
         "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
-        "Supports self-hosted LLMs or your own API keys, for full control over where data goes.",
+        "Supports self-hosted LLMs or user-supplied API keys, for full control over where data goes.",
         "ML-based PII redaction in development, to censor sensitive data before any external API call.",
       ],
       links: [],

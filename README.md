@@ -1,6 +1,6 @@
 # Portfolio Website
 
-My personal portfolio site, live at [dominiccaulfield-duverger.dev](https://dominiccaulfield-duverger.dev). Plain HTML, CSS and JavaScript, with all of the content kept in one data file so updating the site is mostly editing text.
+My personal portfolio site, live at [dominiccaulfield-duverger.dev](https://dominiccaulfield-duverger.dev). Plain HTML, CSS, and JavaScript, with all of the content kept in one data file, so updating the site is mostly editing text.
 
 See [CHANGELOG.md](./CHANGELOG.md) for a dated history of changes to the site.
 
@@ -28,12 +28,13 @@ All of these are edits to `js/data.js`:
 - **New project:** copy an existing entry in `projects`. A new `category` gets its own filter button automatically
 - **Attach a repo to a project:** add `repo: "repo-name"`. The repo's card shows up in that project's Details instead of under Public repos. While the repo is private, the card says so instead of linking to a 404
 - **Hide repos:** list names in `github.exclude`, or prefixes in `github.excludePrefixes` (currently `"CS"` for coursework)
+- **Sub-cards:** give a project `parts: [...]` (each with `name`, `description`, `stack`, `details`). They show inside its Details and are listed on the closed card
 - **New job:** add it to the top of `experience`
 - **Social links:** edit `profile.socials`. An entry with an empty `url` is hidden
 - **Hide, reorder or collapse a section:** in `sections`, set `enabled: false`, move the line, or add `collapsed: true`
 - **New section type:** add it to `sections`, add its data, then add a function with the same id to `RENDERERS` in `main.js`
 
-Log each change with the date in `CHANGELOG.md`.
+Log each technical change with the date in `CHANGELOG.md`.
 
 ## Working on it locally
 
@@ -43,7 +44,7 @@ Log each change with the date in `CHANGELOG.md`.
 
 ## Hosting
 
-The site is served by Caddy from a Debian container on my home server. A VPS handles the domain and HTTPS, and reaches the container over Tailscale, so nothing on the home network is exposed directly.
+The site is served by Caddy from a Debian container on my home server. A VPS handles the domain and HTTPS and reaches the container over Tailscale, so nothing on the home network is exposed directly.
 
 To publish an update after pushing, run this on the server container:
 
