@@ -91,11 +91,11 @@ const PORTFOLIO = {
       status: "In development",
       stack: ["Python", "OCR", "API Integration", "LLMs"],
       description:
-        "Privacy-focused desktop assistant that reads the screen via OCR for Q&A, summaries, and coding help.",
+        "Privacy-focused AI desktop assistant that reads the screen in real time for Q&A, summaries, and coding help.",
       details: [
-        "Captures what's on screen with OCR and hands it to an LLM with the user's question.",
-        "Runs on a self-hosted LLM or your own API keys, so you control where your data goes.",
-        "ML-based PII redaction in development, to strip sensitive data before anything leaves the machine.",
+        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
+        "Supports self-hosted LLMs or user-supplied API keys for full control over data.",
+        "ML-based PII redaction layer in development to censor sensitive data before any external API call.",
       ],
       links: [],
       // repo: "",
@@ -109,9 +109,9 @@ const PORTFOLIO = {
       description:
         "This site. Data-driven and self-hosted on my homelab.",
       details: [
-        "All content lives in one data file, and the page is built from it on load.",
-        "Public repos come in live from the GitHub API and can be attached to project cards.",
-        "Deploys with a git pull on the server, no build step or restart.",
+        "Builds every section from a single data file, so content updates never touch the layout code.",
+        "Pulls public repos live from the GitHub API and attaches them to matching project cards.",
+        "Deploys with a git pull on the server, behind the same VPS relay as the rest of the homelab.",
       ],
       links: [],
       repo: "Portfolio-website",
@@ -121,12 +121,12 @@ const PORTFOLIO = {
       name: "2D Farming & Town-Builder RPG",
       category: "Game Dev",
       status: "In development",
-      stack: ["C++", "Godot Engine"],
+      stack: ["C++", "Godot Engine", "Pixel Art"],
       description:
-        "Farming and town-building RPG built in Godot with C++.",
+        "Pixel-art farming and town-building RPG built in Godot with C++.",
       details: [
-        "Entity systems for the player, NPCs, crops, and buildings.",
-        "Game state management for saving, loading, and day-to-day progression.",
+        "Implements entity systems and game state management.",
+        "Handles rendering across multiple subsystems.",
       ],
       links: [],
       // repo: "",
@@ -138,11 +138,11 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Proxmox", "Docker", "LXC", "Linux"],
       description:
-        "A Proxmox host running 5+ services side by side in containers.",
+        "Proxmox host running 5+ concurrent services, including game servers, Pi-hole, and Nginx Proxy Manager.",
       details: [
-        "Services include game servers, Pi-hole for network-wide ad blocking, and Nginx Proxy Manager.",
-        "Each service gets its own LXC container or Docker stack, so one can be rebuilt without touching the rest.",
-        "Also hosts this site in its own Debian container.",
+        "Isolates services in their own containers so each can be updated or rebuilt independently.",
+        "Runs network-wide DNS filtering with Pi-hole and reverse proxying with Nginx Proxy Manager.",
+        "Hosts this site in a dedicated Debian container.",
       ],
       links: [],
       // repo: "",
@@ -154,11 +154,11 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Tailscale", "iptables", "Cloudflare DNS", "Caddy"],
       description:
-        "Public traffic hits a VPS and is relayed home over Tailscale, so the home IP is never exposed.",
+        "Cloudflare DNS and a VPS relay that route public traffic home over Tailscale, keeping the home IP hidden.",
       details: [
-        "Domains point at the VPS through Cloudflare DNS, not at the home connection.",
-        "iptables NAT forwards game server ports through the tunnel; everything else is dropped by default.",
-        "Caddy handles HTTPS certificates for this site and proxies it to the homelab.",
+        "Forwards game server ports through the tunnel with iptables NAT, with all other inbound traffic dropped.",
+        "Terminates HTTPS with Caddy and proxies web traffic to the homelab.",
+        "Keeps the home network off the public internet, with no ports opened on the home router.",
       ],
       links: [],
       // repo: "",
@@ -170,10 +170,10 @@ const PORTFOLIO = {
       status: "Running",
       stack: ["Subnetting", "Firewalls", "VPN"],
       description:
-        "Home network built with custom subnetting, firewall rules, and VPN access.",
+        "Multi-device home network designed with custom subnetting, firewall rules, and VPN access.",
       details: [
-        "A Tailscale subnet router gives remote access to the LAN without opening ports.",
-        "Services sit on static addresses so routing and firewall rules stay predictable.",
+        "Provides remote access to the LAN through a Tailscale subnet router.",
+        "Separates home devices from public-facing services through firewall rules.",
       ],
       links: [],
       // repo: "",
@@ -183,12 +183,12 @@ const PORTFOLIO = {
       name: "Game Server Hosting",
       category: "Infrastructure",
       status: "Running",
-      stack: ["Linux", "iptables", "Tailscale"],
+      stack: ["Linux", "iptables", "Tailscale", "Monitoring"],
       description:
-        "Dedicated game servers, reachable through the VPS relay instead of open home ports.",
+        "Dedicated game servers administered with port forwarding, firewall configuration, and performance monitoring.",
       details: [
-        "Currently hosting Minecraft and Palworld.",
-        "Each game's port is forwarded individually at the VPS, so only what's needed is reachable.",
+        "Hosts Minecraft and Palworld servers.",
+        "Exposes only each game's port, forwarded through the VPS relay instead of open home ports.",
       ],
       links: [],
       // repo: "",
@@ -200,10 +200,10 @@ const PORTFOLIO = {
       status: "25+ systems",
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
       description:
-        "Built and advised on 25+ custom PCs, from component selection through setup.",
+        "Built and advised on 25+ custom PCs, from component selection through OS setup and troubleshooting.",
       details: [
-        "Matched parts to each person's budget and use, from gaming rigs to workstations.",
-        "Handled assembly, OS install, drivers, and troubleshooting through to a working system.",
+        "Selected components to fit each build's budget and workload.",
+        "Handled assembly, OS installation, drivers, and troubleshooting through to a working system.",
       ],
       links: [],
       // repo: "",
@@ -221,10 +221,11 @@ const PORTFOLIO = {
       start: "Jul 2025",
       end: "Present",
       points: [
-        "Lead teams of up to 20 on 40 projects, 10+ of them at 1,000-15,000 devices, for Fortune 500, financial, and government clients.",
+        "Lead teams of up to 20 on 40 projects, 10+ of them at 1,000–15,000 devices, for Fortune 500, financial, and government clients.",
         "Processed 30,000+ devices, from routine imaging and deployment to advanced hardware and firmware work.",
         "Serve as the escalation point for hardware, software, and network issues across the deployment team.",
-        "Trained 2 technicians into lead roles, and track IT assets across projects.",
+        "Train technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting; trained 2 into lead roles.",
+        "Track IT assets and maintain inventory accuracy across concurrent projects.",
       ],
     },
 
