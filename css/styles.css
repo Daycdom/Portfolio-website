@@ -536,11 +536,15 @@ a.toggle:hover span:first-child {
 }
 
 /* while every project card is closed, all rows are the same height,
-   so every card is the same size. Once one opens, rows size to their
-   own content again so the others don't all grow with it */
+   so every card is the same size. Once one opens the grid stops
+   stretching, and main.js keeps the closed ones at their old height */
 #project-cards:not(:has(button.toggle[aria-expanded="true"])),
 #repo-cards {
   grid-auto-rows: 1fr;
+}
+
+#project-cards:has(button.toggle[aria-expanded="true"]) {
+  align-items: start;
 }
 
 /* a project with sub-cards takes the full row while it's open,

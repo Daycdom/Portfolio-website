@@ -346,16 +346,35 @@
   // Details / Less buttons on the project cards (and the repos panel,
   // which sets its own labels with data-closed / data-open).
   // The CSS rotates the + when aria-expanded is true.
+  //
+  // Closed project cards are all the same height (CSS grid does that).
+  // When one opens, the grid stops stretching, so before that happens we
+  // pin every card at its current height. That way the open card grows on
+  // its own and the rest stay the size they were.
+  const projectCards = [...document.querySelectorAll("#project-cards > .card")];
+  const anyOpen = () => projectCards.some((c) =>
+    c.querySelector(":scope > button.toggle")?.getAttribute("aria-expanded") === "true");
+
   document.querySelectorAll("button.toggle").forEach((btn) => {
     btn.addEventListener("click", () => {
       const panel = document.getElementById(btn.getAttribute("aria-controls"));
       const open = btn.getAttribute("aria-expanded") === "true";
+      const isProject = projectCards.includes(btn.closest(".card"));
+
+      if (isProject && !open && !anyOpen()) {
+        projectCards.forEach((c) => (c.style.minHeight = `${c.offsetHeight}px`));
+      }
 
       btn.setAttribute("aria-expanded", !open);
       btn.querySelector("span").textContent = open
         ? (btn.dataset.closed || "Details")
         : (btn.dataset.open || "Less");
       panel.hidden = open;
+
+      // last one closed, hand sizing back to the grid
+      if (isProject && open && !anyOpen()) {
+        projectCards.forEach((c) => (c.style.minHeight = ""));
+      }
     });
   });
 
