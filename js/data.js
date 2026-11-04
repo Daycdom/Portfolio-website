@@ -94,19 +94,19 @@ const PORTFOLIO = {
   // details). Each one shows as its own small card inside Details.
   projects: [
     {
-      name: "AI Screen Copilot",
+      name: "Sidelight",
       category: "Software",
       status: "In development",
-      stack: ["Python", "OCR", "API Integration", "LLMs"],
+      stack: ["Python", "OCR", "LLM APIs", "Ollama"],
       description:
-        "Privacy-focused AI desktop assistant that uses OCR for real-time Q&A, summaries, and coding help.",
+        "Privacy-first AI desktop assistant that reads a chosen window, redacts sensitive data on-device, and gives real-time suggestions from Claude, ChatGPT, or local models.",
       details: [
-        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
-        "Integrates self-hosted LLMs and user-supplied API keys, for full control over where data goes.",
-        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
+        "Reads only the one approved window with OCR, discarding images right after text extraction.",
+        "Redacts sensitive data on-device before any cloud call, with no telemetry and nothing saved unless turned on.",
+        "Splits into standalone Python packages for screen reading, redaction, model routing with spend caps, and voice.",
       ],
       links: [],
-      // repo: "",
+      repo: "sidelight",
     },
 
     {
