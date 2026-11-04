@@ -5,6 +5,7 @@ Newest first. Add a line here whenever something changes on the site.
 
 ## Nov 4, 2026
 
+- About highlights sit in one sideways-scrolling row, with the next box peeking in so extras are easy to find
 - Content refreshed from the latest resume
 
 

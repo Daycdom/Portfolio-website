@@ -314,20 +314,28 @@ a {
    ------------------------------------------------------------------ */
 
 /* ---- About stat boxes ----
-   1px gap over a grey background = thin divider lines between boxes */
+   1px gap over a grey background = thin divider lines between boxes.
+   They sit in one row that scrolls sideways, snapping to the edge of a box.
+   A bit over four fit across (a bit over two on a phone), so the next box
+   peeks in from the right and it's clear there's more to scroll to. */
 
 .stats {
+  --stats-visible: 4.35;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--stats-visible) * 1px) / var(--stats-visible));
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
   gap: 1px;
   margin-top: 40px;
   background: var(--line);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
 .stat {
+  scroll-snap-align: start;
   padding: 22px 20px;
   background: var(--surface);
 }
@@ -789,7 +797,7 @@ a.toggle:hover span:first-child {
 
 @media (max-width: 720px) {
   .stats {
-    grid-template-columns: repeat(2, 1fr);
+    --stats-visible: 2.3;
   }
 
   .cards,

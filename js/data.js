@@ -38,11 +38,15 @@ const PORTFOLIO = {
       "I also develop software in Python and C++, backed by an A.S. in Computer Science.",
 
     // the stat boxes in About (4 fits on one row)
+    // Most meaningful first. About four show at once on desktop (two on a
+    // phone); the rest scroll sideways.
     highlights: [
       { value: "50,000+", label: "Devices across projects led" },
       { value: "40",      label: "Projects led" },
-      { value: "80/day",  label: "POS devices provisioned" },
       { value: "15%",     label: "Avg. throughput gain" },
+      { value: "80/day",  label: "POS devices provisioned" },
+      { value: "25+",     label: "Custom PCs built" },
+      { value: "A.S.",    label: "Computer Science" },
     ],
   },
 
@@ -188,6 +192,7 @@ const PORTFOLIO = {
     {
       role: "IT Deployment & RMA Technician (Contract)",
       company: "Castles Technology (via iStaff)",
+      location: "Kennesaw, GA",
       start: "Oct 2026",
       end: "Present",
       points: [
@@ -208,7 +213,7 @@ const PORTFOLIO = {
         "Led projects totaling 50,000+ devices, from routine imaging and Autopilot to advanced hardware and firmware work.",
         "Served as the escalation point for hardware, software, and network issues across the deployment team.",
         "Improved project throughput 15% on average by refining workflows before scaling up.",
-        "Trained technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting, bringing 2 into lead roles.",
+        "Trained technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting, preparing 2 of them for lead roles.",
         "Coordinated IT asset tracking and inventory accuracy across concurrent projects.",
       ],
     },
