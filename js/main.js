@@ -462,7 +462,8 @@
     // still private - say so instead of linking to a 404. Once it goes
     // public the card shows up on its own.
     slots.forEach((slot) => {
-      const r = repos.find((r) => r.name === slot.dataset.repo);
+      // case-insensitive, so "sidelight" still matches "Sidelight"
+      const r = repos.find((r) => r.name.toLowerCase() === slot.dataset.repo.toLowerCase());
       slot.innerHTML = r
         ? repoCard(r, "card--nested")
         : `<p class="repo-private">Source code is private for now</p>`;
@@ -471,11 +472,11 @@
     if (!grid) return;
 
     // attached repos are already shown on their project
-    const attached = data.projects.map((p) => p.repo).filter(Boolean);
+    const attached = data.projects.map((p) => p.repo?.toLowerCase()).filter(Boolean);
 
     const rest = repos.filter((r) =>
       !(hideForks && r.fork) && !r.archived &&
-      !exclude.includes(r.name) && !attached.includes(r.name) &&
+      !exclude.includes(r.name) && !attached.includes(r.name.toLowerCase()) &&
       !excludePrefixes.some((pre) => r.name.startsWith(pre)));
 
     if (!rest.length) return dropPanel();

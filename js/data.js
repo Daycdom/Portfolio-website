@@ -92,38 +92,10 @@ const PORTFOLIO = {
   //
   // A bigger project can have parts: [...] (name, description, stack,
   // details). Each one shows as its own small card inside Details.
+  //
+  // Order: most impressive first. Repo cards follow the same order since
+  // they sit inside their project.
   projects: [
-    {
-      name: "Sidelight",
-      category: "Software",
-      status: "In development",
-      stack: ["Python", "OCR", "LLM APIs", "Ollama"],
-      description:
-        "Privacy-first AI desktop assistant that reads a chosen window, redacts sensitive data on-device, and gives real-time suggestions from Claude, ChatGPT, or local models.",
-      details: [
-        "Reads only the one approved window with OCR, discarding images right after text extraction.",
-        "Redacts sensitive data on-device before any cloud call, with no telemetry and nothing saved unless turned on.",
-        "Splits into standalone Python packages for screen reading, redaction, model routing with spend caps, and voice.",
-      ],
-      links: [],
-      repo: "sidelight",
-    },
-
-    {
-      name: "2D Farming & Town-Builder RPG",
-      category: "Game Dev",
-      status: "In development",
-      stack: ["C++", "Godot Engine", "Pixel Art"],
-      description:
-        "2D pixel-art farming and town-building RPG with entity systems and game-state management.",
-      details: [
-        "Built in the Godot Engine with C++.",
-        "Manages game state, entity systems, and rendering across multiple subsystems.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
     {
       name: "Self-Hosted Homelab",
       category: "Infrastructure",
@@ -167,6 +139,37 @@ const PORTFOLIO = {
           ],
         },
       ],
+    },
+
+    {
+      name: "Sidelight",
+      category: "Software",
+      status: "In development",
+      stack: ["Python", "OCR", "LLM APIs", "Ollama"],
+      description:
+        "Privacy-first AI desktop assistant that reads a chosen window, redacts sensitive data on-device, and gives real-time suggestions from Claude, ChatGPT, or local models.",
+      details: [
+        "Reads only the one approved window with OCR, discarding images right after text extraction.",
+        "Redacts sensitive data on-device before any cloud call, with no telemetry and nothing saved unless turned on.",
+        "Splits into standalone Python packages for screen reading, redaction, model routing with spend caps, and voice.",
+      ],
+      links: [],
+      repo: "sidelight",
+    },
+
+    {
+      name: "2D Farming & Town-Builder RPG",
+      category: "Game Dev",
+      status: "In development",
+      stack: ["C++", "Godot Engine", "Pixel Art"],
+      description:
+        "2D pixel-art farming and town-building RPG with entity systems and game-state management.",
+      details: [
+        "Built in the Godot Engine with C++.",
+        "Manages game state, entity systems, and rendering across multiple subsystems.",
+      ],
+      links: [],
+      // repo: "",
     },
 
     {
