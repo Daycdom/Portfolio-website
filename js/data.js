@@ -16,7 +16,7 @@ const PORTFOLIO = {
   // Used in the header, About, Contact and the nav initials.
   profile: {
     name: "Dominic Caulfield-Duverger",
-    title: "IT Technician & Software Developer",
+    title: "IT Deployment · Technical Support · Software Development",
 
     // location: "City, ST",   // uncomment to show it next to the title
 
@@ -29,20 +29,20 @@ const PORTFOLIO = {
     ],
 
     tagline:
-      "Leading enterprise IT deployments at scale, and building software and self-hosted infrastructure on the side.",
+      "Deploying and supporting enterprise and POS devices at scale, and building software and self-hosted infrastructure on the side.",
 
     summary:
-      "IT Technician and Software Developer with over a year of experience leading enterprise " +
-      "deployments for Fortune 500, financial, and government clients. I pair hands-on systems " +
-      "and hardware work with software projects in Python, C++, and Linux, backed by an A.S. in " +
-      "Computer Science.",
+      "IT deployment and technical support professional experienced in leading enterprise device " +
+      "rollouts for Fortune 500, financial, and government clients, and troubleshooting hardware, " +
+      "software, and network issues. Skilled in Linux, Windows, Autopilot, and technician training. " +
+      "I also develop software in Python and C++, backed by an A.S. in Computer Science.",
 
     // the stat boxes in About (4 fits on one row)
     highlights: [
-      { value: "30,000+", label: "Devices processed" },
+      { value: "50,000+", label: "Devices across projects led" },
       { value: "40",      label: "Projects led" },
-      { value: "25+",     label: "Custom PCs built" },
-      { value: "A.S.",    label: "Computer Science" },
+      { value: "80/day",  label: "POS devices provisioned" },
+      { value: "15%",     label: "Avg. throughput gain" },
     ],
   },
 
@@ -90,6 +90,37 @@ const PORTFOLIO = {
   // details). Each one shows as its own small card inside Details.
   projects: [
     {
+      name: "AI Screen Copilot",
+      category: "Software",
+      status: "In development",
+      stack: ["Python", "OCR", "API Integration", "LLMs"],
+      description:
+        "Privacy-focused AI desktop assistant that uses OCR for real-time Q&A, summaries, and coding help.",
+      details: [
+        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
+        "Integrates self-hosted LLMs and user-supplied API keys, for full control over where data goes.",
+        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
+      ],
+      links: [],
+      // repo: "",
+    },
+
+    {
+      name: "2D Farming & Town-Builder RPG",
+      category: "Game Dev",
+      status: "In development",
+      stack: ["C++", "Godot Engine", "Pixel Art"],
+      description:
+        "2D pixel-art farming and town-building RPG with entity systems and game-state management.",
+      details: [
+        "Built in the Godot Engine with C++.",
+        "Manages game state, entity systems, and rendering across multiple subsystems.",
+      ],
+      links: [],
+      // repo: "",
+    },
+
+    {
       name: "Self-Hosted Homelab",
       category: "Infrastructure",
       status: "Running",
@@ -135,38 +166,7 @@ const PORTFOLIO = {
     },
 
     {
-      name: "AI Screen Copilot",
-      category: "Software",
-      status: "In development",
-      stack: ["Python", "OCR", "API Integration", "LLMs"],
-      description:
-        "Privacy-focused AI desktop assistant that reads the screen via OCR for real-time Q&A, summaries, and coding help.",
-      details: [
-        "Captures on-screen content with OCR and passes it to an LLM along with the user's question.",
-        "Supports self-hosted LLMs or user-supplied API keys, for full control over where data goes.",
-        "ML-based PII redaction in development, to censor sensitive data before any external API call.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "2D Farming & Town-Builder RPG",
-      category: "Game Dev",
-      status: "In development",
-      stack: ["C++", "Godot Engine", "Pixel Art"],
-      description:
-        "Pixel-art farming and town-building RPG with entity systems and game state management.",
-      details: [
-        "Built in the Godot Engine with C++.",
-        "Manages game state, entity systems, and rendering across multiple subsystems.",
-      ],
-      links: [],
-      // repo: "",
-    },
-
-    {
-      name: "PC Builds",
+      name: "Custom PC Builds",
       category: "Hardware",
       status: "25+ systems",
       stack: ["Hardware", "OS Setup", "Troubleshooting"],
@@ -186,17 +186,30 @@ const PORTFOLIO = {
   // Newest first. location is optional.
   experience: [
     {
+      role: "IT Deployment & RMA Technician (Contract)",
+      company: "Castles Technology (via iStaff)",
+      start: "Oct 2026",
+      end: "Present",
+      points: [
+        "Provision 80 Linux/Android POS devices a day on average: custom Linux, OS/BIOS/firmware, apps/plugins, and key injection.",
+        "Diagnose hardware faults and replace failed components on RMA devices, tracking each RMA in Jira.",
+        "Troubleshoot software and network issues, and complete hardware installs and repairs.",
+      ],
+    },
+
+    {
       role: "Lead Configuration Technician",
       company: "EbryIT, Inc.",
       location: "Kennesaw, GA",
       start: "Jul 2025",
-      end: "Present",
+      end: "Oct 2026",
       points: [
-        "Lead teams of up to 20 on 40 projects, 10+ of them at 1,000–15,000 devices, for Fortune 500, financial, and government clients.",
-        "Processed 30,000+ devices, from routine imaging and deployment to advanced hardware and firmware work.",
-        "Serve as the escalation point for hardware, software, and network issues across the deployment team.",
-        "Train technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting; trained 2 into lead roles.",
-        "Track IT assets and maintain inventory accuracy across concurrent projects.",
+        "Led teams of up to 20 on 40 projects, 10+ of them at 1,000–15,000 devices, for Fortune 500, financial, and government clients.",
+        "Led projects totaling 50,000+ devices, from routine imaging and Autopilot to advanced hardware and firmware work.",
+        "Served as the escalation point for hardware, software, and network issues across the deployment team.",
+        "Improved project throughput 15% on average by refining workflows before scaling up.",
+        "Trained technicians on imaging workflows, BIOS configuration, device enrollment, and troubleshooting, bringing 2 into lead roles.",
+        "Coordinated IT asset tracking and inventory accuracy across concurrent projects.",
       ],
     },
 
@@ -223,24 +236,24 @@ const PORTFOLIO = {
   // ---- Skills ----
   skills: [
     {
-      group: "Languages",
-      items: ["Python", "C++", "Java", "C", "C#", "JavaScript", "HTML", "CSS", "SQL"],
-    },
-    {
-      group: "Systems",
-      items: ["Windows 10/11", "Linux (CLI)", "Microsoft 365", "Active Directory", "BIOS/OS Imaging", "Server Administration"],
+      group: "Operating Systems & Administration",
+      items: ["Linux (CLI)", "Windows 10/11", "Microsoft 365", "Active Directory", "Windows Autopilot", "Server Administration"],
     },
     {
       group: "Networking",
       items: ["TCP/IP", "DHCP", "DNS", "VPN", "Firewalls", "System Hardening", "Tailscale", "iptables", "Cable Routing & Termination"],
     },
     {
-      group: "Tools",
-      items: ["Git", "GitHub", "Docker", "Shell Scripting", "SSH", "Proxmox", "LXC"],
+      group: "Deployment & Hardware",
+      items: ["Device Provisioning & Enrollment", "BIOS/Firmware Updates", "BIOS/OS Imaging", "POS Systems", "PC Builds", "Server Setup", "Repair", "Troubleshooting"],
     },
     {
-      group: "Hardware",
-      items: ["PC Builds", "Server Setup", "Device Configuration & Enrollment", "Troubleshooting"],
+      group: "Tools & Virtualization",
+      items: ["Git", "GitHub", "Jira", "Docker", "Shell Scripting", "SSH", "Proxmox", "LXC"],
+    },
+    {
+      group: "Programming",
+      items: ["Python", "C++", "C", "Java", "C#", "JavaScript", "HTML", "CSS", "SQL"],
     },
   ],
 
@@ -250,12 +263,11 @@ const PORTFOLIO = {
     {
       degree: "Associate of Science in Computer Science",
       school: "Southern New Hampshire University",
-      date: "Jun 2024",
+      date: "2022–2024",
     },
   ],
 
   certifications: [
     { name: "CompTIA A+", status: "In progress" },
-    { name: "OSHA 10",    status: "2018" },
   ],
 };

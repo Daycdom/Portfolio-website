@@ -3,6 +3,11 @@
 Newest first. Add a line here whenever something changes on the site.
 
 
+## Nov 4, 2026
+
+- Content refreshed from the latest resume
+
+
 ## Oct 10, 2026
 
 - Project and repo cards are all the same size while closed, with Details buttons aligned at the bottom; an opened card grows on its own without stretching the others
